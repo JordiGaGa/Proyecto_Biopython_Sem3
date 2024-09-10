@@ -1,6 +1,6 @@
 # [Análisis de niveles de expresión de genes en E. coli con bajos niveles de magnesio]
 
-Nombre: <!-- Armando Gael Gónzalez Trapaga (<email>)  -->
+Nombre: <!-- Armando Gael Gónzalez Trapaga (aggonzal@lcg.unam.mx)  -->
 Nombre: <!-- Jordi García Garcés (<jordigg@lcg.unam.mx>)  -->  
 Nombre: <!-- Jocelyn Trujillo Gutierrez  (<jocelynt@lcg.unam.mx>)  -->
 
