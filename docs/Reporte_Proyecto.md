@@ -1,17 +1,15 @@
-# [Análisis de niveles de expresión de genes en E. coli con bajos niveles de magnesio]
+# [Efectos en la regulación genica del estrés inducido a Escherichia coli por la restricción de Mg2+]
 
-Nombre: <!-- Armando Gael Gónzalez Trapaga (aggonzal@lcg.unam.mx)  -->
-Nombre: <!-- Jordi García Garcés (<jordigg@lcg.unam.mx>)  -->  
-Nombre: <!-- Jocelyn Trujillo Gutierrez  (<jocelynt@lcg.unam.mx>)  -->
-
+Nombre:  Armando Gael Gónzalez Trapaga (aggonzal@lcg.unam.mx)   
+Nombre:  Jordi García Garcés (<jordigg@lcg.unam.mx>)   
+Nombre:   Jocelyn Trujillo Gutierrez  (<jocelynt@lcg.unam.mx>)  
 
 Fecha:  10/09/2024
-
-
 ## Introducción
 
-<!-- [Describir los antecedentes que ayuden a comprender el proyecto a desarrollar, o bien el análisis que se requiere llevar a cabo, incluyendo términos o definiciones, e imágenes relacionados a este. Esta sección, permite el usuario tener la noción del tema que se va a bordar en el resto del documento. -->
+El magnesio es uno de los cationes mas abundantes dentro de  las células [referencia Romani AM]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves: unión al DNA y mantenimiento de su estabilidad (promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción), catálisis enzimática (cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA), interacciones proteína-proteína (facilita la interacción entre las subunidades de la RNA-pol, también esta presente en la formación de macro-complejos que regulen el DNA), regulación post-transcripcional (splicing y formación de los residuos de pseudouridina en rRNA y tRNA) y respuesta al estrés celular (modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés). [referencia Xue Li ].
 
+Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , pero hay otros que están totalmente restringidos al uso de este catión [referencia Groisman], indicando 2 cosas: La primera es vías alternas para la realización de ciertos procesos, lo ayuda a la supervivencia en condiciones limitadas del ion y la otra es que la célula no puede vivir sin el ion, por ende limitar su presencia en el medio induciría el suficiente estrés para permitir cambios en la expresión genética y activar estas vías alternas.
 
 ## Planteamiento del problema
 
@@ -169,6 +167,11 @@ Solución: Describir paso a paso la solución, incluyendo los comandos correspon
 ## Referencias
 <!-- Registrar todas las referencias consultadas. Se sugiere formato APA. Ejemplo:
  
- [1] Frederick R. Blattner et al., The Complete Genome Sequence of <i>Escherichia coli</i> K-12.Science277,1453-1462(1997).DOI:10.1126/science.277.5331.1453
+ [1] Frederick R. Blattner et al., The Complete Genome Sequence of <i>Escherichia coli</i> K-12.Science277,1453-1462(1997).DOI:10.1126/science.277.5331.1453 -> EJEMPLO
  
- -->
+  -->
+  
+ [1] Groisman EA, Hollands K, Kriner MA, Lee EJ, Park SY, Pontes MH. Bacterial Mg2+ homeostasis, transport, and virulence. Annu Rev Genet. 2013;47:625-46. doi: 10.1146/annurev-genet-051313-051025. Epub 2013 Sep 20. PMID: 24079267; PMCID: PMC4059682.
+ [2] Romani AM, Scarpa A. Regulation of cellular magnesium. Front Biosci. 2000 Aug 1;5:D720-34. doi: 10.2741/romani. PMID: 10922296.
+ [3] Xue Li, Xiaobai Zhang, Miaomiao Zhang, Xi Luo, Tingting Zhang, Xianjin Liu, Renfei Lu, Yiquan Zhang, Environmental magnesium ion affects global gene expression, motility, biofilm formation and virulence of Vibrio parahaemolyticus, Biofilm, Volume 7, 2024, 100194, ISSN 2590-2075, doi:10.1016/j.bioflm.2024.100194.
+ 
