@@ -1,13 +1,13 @@
 # Proyecto_Biopython_Sem3
 
-Este es un proyecto colaborativo el cual contiene distintos scripts de python para el analisis de los datos de expresion de Escherichia Coli bajo condiciones de estres (en presencia de baja canditad de magnesio).
+Este es un proyecto colaborativo el cual contiene distintos scripts de Python para el análisis de los datos de expresión de Escherichia Coli bajo condiciones de estrés (en presencia de baja cantidad de magnesio).
 
 ## Uso (TODO)
 
 El script acepta un solo argumento, el nombre del archivo a leer:
 
 ```
-python sumador.py -inputfile [archivo]
+python programa.py -inputfile [archivo]
 ```
 
 donde `[archivo]` es el nombre del archivo que contiene los números a sumar. El archivo debe contener un número por línea.
