@@ -1,6 +1,6 @@
-# Proyecto_Biopython_Sem3
+# Proyecto_Biopython_Sem3 : Efectos en la regulación genica del estrés inducido a Escherichia coli por la restricción de Mg2+
 
-Este es un proyecto colaborativo el cual contiene distintos scripts de Python para el análisis de los datos de expresión de Escherichia Coli bajo condiciones de estrés (en presencia de baja cantidad de magnesio).
+Este es un proyecto colaborativo el cual contiene distintos scripts de Python para el análisis de los datos de expresión de Escherichia Coli bajo condiciones de estrés (en presencia de baja cantidad de magnesio) para mas información consulte: [Proyecto_Biopython_Sem3/docs/Reporte_Proyecto.md](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Reporte_Proyecto.md).
 
 ## Uso (TODO)
 
