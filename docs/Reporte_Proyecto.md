@@ -31,10 +31,10 @@ Aquellos genes que se sobreexpresen podrían estar ligados a rutas metabólicas 
 > Usuario: 
 
 > Software: 
--->
+
 
 ### B. Datos de Entrada 
-
+-->
 
 Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y se encuentran en la RUTA DE LA CARPETA.
 
