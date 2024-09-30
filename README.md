@@ -42,8 +42,11 @@ Este script está disponible bajo la licencia [MIT License](https://github.com/J
 
 ## Como citar (TODO)
 
-Si utiliza este script en su trabajo, por favor cite: [información de citación]. 
+Si utiliza este script en su trabajo, por favor cite: Jordi et al. (2024). *Proyecto_Biopython_Sem3* (Versión 1) [Repositorio GitHub]. GitHub. https://github.com/JordiGaGa/Proyecto_Biopython_Sem3
 
 ## Contáctenos (TODO)
 
-Si tiene problemas o preguntas, por favor abra un problema en este repositorio o póngase en contacto con nosotros en: 
+Si tiene problemas o preguntas, por favor abra un problema en este repositorio o póngase en contacto con nosotros en:
+- Armando Gael Gónzalez Trapaga (aggonzal@lcg.unam.mx)
+- Jordi García Garcés (jordigg@lcg.unam.mx)
+- Jocelyn Trujillo Gutierrez (jocelynt@lcg.unam.mx)
