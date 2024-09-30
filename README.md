@@ -40,11 +40,11 @@ El código fuente está disponible en este repositorio. Se acoge con satisfacci�
 
 Este script está disponible bajo la licencia [MIT License](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/LICENSE). Consulte el archivo LICENSE para obtener más detalles.
 
-## Como citar (TODO)
+## Como citar
 
 Si utiliza este script en su trabajo, por favor cite: Jordi et al. (2024). *Proyecto_Biopython_Sem3* (Versión 1) [Repositorio GitHub]. GitHub. https://github.com/JordiGaGa/Proyecto_Biopython_Sem3
 
-## Contáctenos (TODO)
+## Contáctenos
 
 Si tiene problemas o preguntas, por favor abra un problema en este repositorio o póngase en contacto con nosotros en:
 - Armando Gael Gónzalez Trapaga (aggonzal@lcg.unam.mx)
