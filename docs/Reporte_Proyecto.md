@@ -13,11 +13,11 @@ Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , pero hay 
 
 ## Planteamiento del problema
 
-<!-- Se busca analizar la diferencia entre los niveles de expresión de E.coli en condiciones normales y bajo estrés (expuesta a una concentración pequeña de magnesio), asimismo comparar estas diferencias con la longitud de la cadena de aminoácidos de la proteína. Dentro de todos los genes que se estudiaron nos enfocaremos en aquellos cuya expresión se haya visto más afectada (ya sea que se sobre expresó o disminuyó en gran medida), además también tomaremos algunos genes cuya expresión no se haya visto afectada y a partir de estos buscar la función de cada uno de ellos.-->
+Se busca analizar la diferencia en los niveles de expresión de E.coli en condiciones normales y bajo estrés (expuestas a una concentración pequeña de magnesio), esto con el fin de identificar aquellos genes que se sobreexpresen y subexpresen bajo dicha condición, para posteriormente poder hacer una anotación funcional e identificar si existe alguna relación entre las funciones de los genes más y menos expresados.
 
 ## Planteamiento de Hipótesis
 
-<!-- Aquellos genes que se sobreexpresan tenderán a ser de una longitud de aminoácidos más pequeña, mientras que aquellos que sean menos expresados tendrían una mayor longitud o podrían estar relacionados a genes que regulen o disminuyan la entrada de magnesio a la célula, a su vez, aquellos genes cuya expresión no cambiaría notablemente tendrían que ver con mecanismos de maquinaria basal.--> 
+Aquellos genes que se sobreexpresen podrían estar ligados a rutas metabólicas alternas que no dependan del magnesio, mientras que aquellos que se muestren subexpresados podrían estar relacionados a genes que regulen o disminuyan la entrada de magnesio a la célula.
 
 ## Metodología
 
