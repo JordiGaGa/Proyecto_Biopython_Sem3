@@ -161,10 +161,13 @@ NC_000913.3     RefSeq  CDS     337     2799    .       +       0       ID=cds-N
 1. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
  2. Graficación de los datos. 
 
+####Flujo del proyecto
+![DiagramaFlujo](https://github.com/user-attachments/assets/8edaf6b9-1eb7-45e6-93ef-971a1278cda8)
 
 
 ## Resultados
- 
+
+
 
 <!-- 
 ### X. Pregunta 
