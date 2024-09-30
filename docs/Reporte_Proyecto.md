@@ -31,12 +31,12 @@ Aquellos genes que se sobreexpresen podrían estar ligados a rutas metabólicas 
 > Usuario: 
 
 > Software: 
+-->
 
 ### B. Datos de Entrada 
 
-Entendiendo los archivos de datos 
 
-Los datos de entrada fueron descargados desde NCBI y se encuentran en RUTA DE LA CARPETA.
+Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y se encuentran en la RUTA DE LA CARPETA.
 
 ```
 |-- data
@@ -45,11 +45,15 @@ Los datos de entrada fueron descargados desde NCBI y se encuentran en RUTA DE LA
 |   |-- SraRunTable.txt
 ```
 
--->
-
-#### Metadatos de la carpeta de datos
+1. Obtención de los datos de expresión de E. coli en condiciones de bajo magnesio y grupo control.
+2. Modificar y reestrcturar los datos para poder manipular.
+3. Normalización y análisis de los datos de expresión con el programa PyDESeq2.
+4. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
+5. Graficación de los datos. 
 
 <!-- 
+#### Metadatos de la carpeta de datos
+ 
 > Versión/Identificador del genoma:  NC_000913.3
 
 > Fecha de descarga: dd/mm/aaaa
@@ -173,6 +177,8 @@ Solución: Describir paso a paso la solución, incluyendo los comandos correspon
   -->
   
  [1] Groisman EA, Hollands K, Kriner MA, Lee EJ, Park SY, Pontes MH. Bacterial Mg2+ homeostasis, transport, and virulence. Annu Rev Genet. 2013;47:625-46. doi: 10.1146/annurev-genet-051313-051025. Epub 2013 Sep 20. PMID: 24079267; PMCID: PMC4059682.
+ 
  [2] Romani AM, Scarpa A. Regulation of cellular magnesium. Front Biosci. 2000 Aug 1;5:D720-34. doi: 10.2741/romani. PMID: 10922296.
+ 
  [3] Xue Li, Xiaobai Zhang, Miaomiao Zhang, Xi Luo, Tingting Zhang, Xianjin Liu, Renfei Lu, Yiquan Zhang, Environmental magnesium ion affects global gene expression, motility, biofilm formation and virulence of Vibrio parahaemolyticus, Biofilm, Volume 7, 2024, 100194, ISSN 2590-2075, doi:10.1016/j.bioflm.2024.100194.
  
