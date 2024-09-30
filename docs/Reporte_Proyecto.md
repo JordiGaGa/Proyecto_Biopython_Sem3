@@ -41,6 +41,7 @@ Los datos de entrada fueron descargados desde NCBI y se encuentran en RUTA DE LA
 ```
 |-- data
 |   |-- GSE276379_RNASeq_kallisto.csv
+|   |-- GSE276379_RNASeq_kallisto_sin_length.tsv
 |   |-- SraRunTable.txt
 ```
 
