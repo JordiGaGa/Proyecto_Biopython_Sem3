@@ -22,19 +22,22 @@ Aquellos genes que se sobreexpresen podrían estar ligados a rutas metabólicas 
 ## Metodología
 
 <!-- [Identificar y describir los diferentes datos de entrada con los que se cuenta, así como de dónde fueron descargados, el formato de los mismos, y las columnas con las que cuenta. Especificar si se utilizará un servidor en particular para trabajar, o herramientas para el desarrollo de la solución del análsis. Formular las preguntas biológicas que se busca resolver con el análisis de los datos para determinar las tareas a realizar por cada una de ellas.]
-
+-->
 
 ### A. Servidor y software
 
 > Servidor: 
+- NA
 
 > Usuario: 
+-  NA
 
 > Software: 
+- Python 
 
 
 ### B. Datos de Entrada 
--->
+
 
 Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y se encuentran en la RUTA DE LA CARPETA.
 
@@ -45,44 +48,45 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 |   |-- SraRunTable.txt
 ```
 
-<!-- 
+
 #### Metadatos de la carpeta de datos
  
-> Versión/Identificador del genoma:  NC_000913.3
+> Versión/GEO accession: **[GSE276379](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE276379)**
 
-> Fecha de descarga: dd/mm/aaaa
+> Organismo :  **_Escherichia_ _coli_**
 
->| Archivo | Descripción  | Tipo |
-|:--      |:--           |:--  |
-| coli_genomic.fna  | Secuencia de nucleotidos de E. coli  | Formato FastA |
-| coli.gff.   | Anotación del genoma de E. coli  | Formato gff |
-| coli_protein.faa | Secuencia de aminoacidos de las proteinas de E. coli | formato FastA|
-| flagella_genes.txt | Genes con función relacionada al flagello en E. coli | lista |
-| directorio.txt. | Archivo con nombres de personas | lista |
+> Fecha de descarga: 09/2024
 
--->
+| Archivo                                  | Descripción                                                                           | Tipo        |
+| :--------------------------------------- | :------------------------------------------------------------------------------------ | :---------- |
+| GSE276379_RNASeq_kallisto.csv            | Archivo con los datos de expresión en distintas condiciones y la longitud de cada gen | Formato csv |
+| GSE276379_RNASeq_kallisto_sin_length.tsv | Archivo con los datos de expresión en distintas condiciones                           | Formato tsv |
+| SraRunTable.txt                          | Tabla de metadatos sobre cada una de las condiciones                                  | formato csv |
 
 #### Formato de los archivos
 
-<!-- 
 
-- `coli_genomic.fna` : formato FastA
-
+- `GSE276379_RNASeq_kallisto_sin_length.tsv` : formato tsv
 
 ```
->NC_000913.3 Escherichia coli str. K-12 substr. MG1655, complete genome
-AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGCTTCTGAACTG
-GTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAATATAGGCATAGCGCACAGAC
-AGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACCATTACCACCACCATCACCATTACCACAGGT
+	low-mg1	low-mg2	ns1	ns2
+thrL	39.8686	40.0939	56.2871	61.5181
+thrA	26.5438	21.487	341.707	298.131
+thrB	25.3756	19.9654	255.076	237.161
+thrC	25.6537	20.6849	310.112	285.386
+yaaX	17.8188	14.4786	32.6503	34.8904
+yaaA	29.9852	24.5718	60.3333	61.0447
 ```
 
 Formato: 
 
-> a. La primera línea es información de la secuencia. Primero viene el identificador del genoma.
+> a. La primera línea es información de las condiciones: 
+- low-mg1: E. coli en medio con bajo magnesio. Replica 1
+- low-mg2: E. coli en medio con bajo magnesio. Replica 2
+- ns1: Grupo control. Replica 1
+- ns2: Grupo control. Replica 2
 
-> b. Después vienen varias líneas con la secuencia de nuclótidos del genoma completo.
-
-
+> b. Después vienen varias líneas con cada gen y su nivel de expresión en cada condición.
 
 - `coli.gff`: anotación de features en el genoma
 
@@ -124,22 +128,37 @@ Formato:
 7. strand. La cadena (+ , - )
 8. frame. Marco de lectura
 9.  attribute. Pares tag-value, separados por coma, que proveen información adicional
-```
---->
 
+```
+##gff-version 3
+#!gff-spec-version 1.21
+#!processor NCBI annotwriter
+#!genome-build ASM584v2
+#!genome-build-accession NCBI_Assembly:GCF_000005845.2
+##sequence-region NC_000913.3 1 4641652
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=511145
+
+NC_000913.3     RefSeq  region  1       4641652 .       +       .       ID=NC_000913.3:1.>
+NC_000913.3     RefSeq  gene    190     255     .       +       .       ID=gene-b0001;Dbx>
+NC_000913.3     RefSeq  CDS     190     255     .       +       0       ID=cds-NP_414542.>
+NC_000913.3     RefSeq  gene    337     2799    .       +       .       ID=gene-b0002;Dbx>
+NC_000913.3     RefSeq  CDS     337     2799    .       +       0       ID=cds-NP_414543.>
+
+```
 #### Preguntas de investigación
+
 > ¿Existe un cambio en la expresión de los genes en condiciones bajas de magnesio?
- 1. Obtención de los datos de expresión de E. coli en condiciones de bajo magnesio y grupo control.
+1. Obtención de los datos de expresión de E. coli en condiciones de bajo magnesio y grupo control.
  2. Modificar y reestrcturar los datos para poder manipular.
  3. Normalización y análisis de los datos de expresión con el programa PyDESeq2.
  4. Dado los datos obtenidos de PyDESeq2 identificar si hay cambios en la expresión. 
 
 > ¿Qué genes están notablemente sobreexpresados y subexpresados?
- 1. Identificar aquellos genes con cambios muy notables en sus niveles de expresión.
+1. Identificar aquellos genes con cambios muy notables en sus niveles de expresión.
  2. Clasificar de acuerdo a si están sobreexpresados o subexpresados.
 
 > ¿A qué funciones biológicas están asociadas dichos genes? 
- 1. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
+1. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
  2. Graficación de los datos. 
 
 
@@ -147,7 +166,8 @@ Formato:
 ## Resultados
  
 
-<!-- ### X. Pregunta 
+<!-- 
+### X. Pregunta 
 
 Archivo(s):     
 
@@ -157,11 +177,10 @@ Algoritmo:
 
 Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
 
+
 ```bash
 
 ```
-
--->
 
 
 
