@@ -45,12 +45,6 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 |   |-- SraRunTable.txt
 ```
 
-1. Obtención de los datos de expresión de E. coli en condiciones de bajo magnesio y grupo control.
-2. Modificar y reestrcturar los datos para poder manipular.
-3. Normalización y análisis de los datos de expresión con el programa PyDESeq2.
-4. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
-5. Graficación de los datos. 
-
 <!-- 
 #### Metadatos de la carpeta de datos
  
@@ -131,15 +125,23 @@ Formato:
 8. frame. Marco de lectura
 9.  attribute. Pares tag-value, separados por coma, que proveen información adicional
 ```
-
+--->
 
 #### Preguntas de investigación
-> ¿Pregunta X?
-Respuesta: Describir el trabajo que implica o pasos a seguir para resolver esta pregunta.
+> ¿Existe un cambio en la expresión de los genes en condiciones bajas de magnesio?
+ 1. Obtención de los datos de expresión de E. coli en condiciones de bajo magnesio y grupo control.
+ 2. Modificar y reestrcturar los datos para poder manipular.
+ 3. Normalización y análisis de los datos de expresión con el programa PyDESeq2.
+ 4. Dado los datos obtenidos de PyDESeq2 identificar si hay cambios en la expresión. 
 
+> ¿Qué genes están notablemente sobreexpresados y subexpresados?
+ 1. Identificar aquellos genes con cambios muy notables en sus niveles de expresión.
+ 2. Clasificar de acuerdo a si están sobreexpresados o subexpresados.
 
+> ¿A qué funciones biológicas están asociadas dichos genes? 
+ 1. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
+ 2. Graficación de los datos. 
 
--->
 
 
 ## Resultados
