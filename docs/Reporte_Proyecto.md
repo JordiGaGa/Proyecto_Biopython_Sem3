@@ -61,7 +61,7 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 | :--------------------------------------- | :------------------------------------------------------------------------------------ | :---------- |
 | GSE276379_RNASeq_kallisto.csv            | Archivo con los datos de expresión en distintas condiciones y la longitud de cada gen | Formato csv |
 | GSE276379_RNASeq_kallisto_sin_length.tsv | Archivo con los datos de expresión en distintas condiciones                           | Formato tsv |
-| SraRunTable.txt                          | Tabla de metadatos sobre cada una de las condiciones                                  | formato csv |
+| SraRunTable.txt                          | Tabla de metadatos sobre cada una de las condiciones                                  | Formato csv |
 
 #### Formato de los archivos
 
@@ -88,63 +88,57 @@ Formato:
 
 > b. Después vienen varias líneas con cada gen y su nivel de expresión en cada condición.
 
-- `coli.gff`: anotación de features en el genoma
+- `SraRunTable.txt`: Metadatos de los análisis
 
 
 El contenido del archivo es:
 
 ```
-##gff-version 3
-#!gff-spec-version 1.21
-#!processor NCBI annotwriter
-#!genome-build ASM584v2
-#!genome-build-accession NCBI_Assembly:GCF_000005845.2
-##sequence-region NC_000913.3 1 4641652
-##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=511145
+Run,Assay Type,AvgSpotLen,Bases,BioProject,BioSample,Bytes,cell_type,Center Name,Collection_Date,Consent,DATASTORE filetype,DATASTORE provider,DATASTORE region,Experiment,genotype,geo_loc_name_country,geo_loc_name_country_continent,geo_loc_name,Instrument,Library Name,LibraryLayout,LibrarySelection,LibrarySource,Organism,Platform,ReleaseDate,create_date,version,Sample Name,source_name,SRA Study,strain,treatment
 
-NC_000913.3     RefSeq  region  1       4641652 .       +       .       ID=NC_000913.3:1.>
-NC_000913.3     RefSeq  gene    190     255     .       +       .       ID=gene-b0001;Dbx>
-NC_000913.3     RefSeq  CDS     190     255     .       +       0       ID=cds-NP_414542.>
-NC_000913.3     RefSeq  gene    337     2799    .       +       .       ID=gene-b0002;Dbx>
-NC_000913.3     RefSeq  CDS     337     2799    .       +       0       ID=cds-NP_414543.>
-
+SRR30561641,RNA-Seq,290,14043346823,PRJNA1156803,SAMN43501102,5466390979,Bacterial cell,"YADAVALLI, GENETICS, RUTGERS UNIVERSITY",missing,public,"fastq,run.zq,sra","gs,ncbi,s3","gs.us-east1,ncbi.public,s3.us-east-1",SRX25984781,Wild type,uncalculated,uncalculated,missing,Illumina HiSeq 4000,GSM8497425,PAIRED,cDNA,TRANSCRIPTOMIC,Escherichia coli,ILLUMINA,2024-09-05T00:00:00Z,2024-09-05T18:34:00Z,1,GSM8497425,Bacterial cell,SRP530775,K-12 MG1655,low magnesium
 ```
 
 Formato: 
 
-> a. Es un formato gff tabular, es decir, cada dato es separado por tabulador.
-> 
-> b. Cada renglón en el formato gff es una elemento genético anotado en el genoma, que se le denomina `feature`, éstos features pueden ser genes, secuencias de inserción, promotores, sitios de regulación, todo aquello que este codificado en el DNA y ocupe una región en el genoma de  E. coli.
+> a. La primera línea son los datos relacionados a cada una de las pruebas realizadas. (Aquellos que aparezcan como missing, uncalculated o public en los metadatos no serán descritos)
+- Run: Identificador asociado a la corrida de secuenciación en el repositorio de datos de NCBI.
+- Assay Type: Tipo de ensayo con el que obtuvieron los datos.
+- AvgSpotLen: Longitud promedio de las lecturas 
+- Bases: Número de Bases
+- BIoProject: Identificador del proyecto biológico relacionado
+- BioSample: Identificador de la muestra biológica 
+- Bytes: Cantidad de datos cuantificados en bytes.
+- cell type: Tipo de célula analizada
+- Center Name: Nombre del laboratorio o centro que realizó el estudio
+- Collection_Date: 
+- Consent:
+- DATASTORE filetype: Formato o tipo de archivo 
+- DATASTORE provider: Plataforma para almacenar los datos
+- DATASTORE region: Ubicación del centro de datos de los datos experimentales.
+- Experiment: Identificador del experimento.
+- genotype: Características del genotipo (wild type o modificado)
+- geo_loc_name_country:
+- geo_loc_name_country_continent:
+- geo_loc_name: 
+- Instrument: Modelo y nombre del secuenciador.
+- Library Name: Nombra de la biblioteca de secuencación.
+- LibraryLayout: Lecturas pareadas o solas.
+- LibrarySelection: Selección de la biblioteca de datos en base a con lo que fue generada.
+- LibrarySource: Biblioteca de donde se extrajeron los datos.
+- Organism: Organismo o especie usada.
+- Platform: Plataforma usada para el análisis
+- ReleaseDate: Hora y fecha de liberación de los datos.
+- create_date: Hora y fecha de registro en la base de datos.
+- version: Número de versión
+- Sample Name: Nombre de la muestra usada 
+- source_name: Tipo de célula 
+- SRA Study: EStudio registrado en Sequence Read Archive 
+- strain: Cepa utilizada 
+- treatment: Condición experimental bajo la que estuvo la muestra. 
 
-> c. Los atributos de cada columna par cada elemento genético son
+> b. Después cada una de las filas está relacionada a las diferentes pruebas que se realizaron con sus características e información.
 
->```
-1. seqname. Nombre del cromosoma
-2. source. Nombre del programa que generó ese elemento
-3. feature. Tipo de elemento
-4. start. Posición de inicio
-5. end. Posición de final
-6. score. Un valor de punto flotante
-7. strand. La cadena (+ , - )
-8. frame. Marco de lectura
-9.  attribute. Pares tag-value, separados por coma, que proveen información adicional
-
-```
-##gff-version 3
-#!gff-spec-version 1.21
-#!processor NCBI annotwriter
-#!genome-build ASM584v2
-#!genome-build-accession NCBI_Assembly:GCF_000005845.2
-##sequence-region NC_000913.3 1 4641652
-##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=511145
-
-NC_000913.3     RefSeq  region  1       4641652 .       +       .       ID=NC_000913.3:1.>
-NC_000913.3     RefSeq  gene    190     255     .       +       .       ID=gene-b0001;Dbx>
-NC_000913.3     RefSeq  CDS     190     255     .       +       0       ID=cds-NP_414542.>
-NC_000913.3     RefSeq  gene    337     2799    .       +       .       ID=gene-b0002;Dbx>
-NC_000913.3     RefSeq  CDS     337     2799    .       +       0       ID=cds-NP_414543.>
-
-```
 #### Preguntas de investigación
 
 > ¿Existe un cambio en la expresión de los genes en condiciones bajas de magnesio?
