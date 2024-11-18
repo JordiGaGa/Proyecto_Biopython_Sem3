@@ -4,13 +4,30 @@ Este es un proyecto colaborativo el cual contiene distintos scripts de Python pa
 
 ## Uso (TODO)
 
-El script acepta un solo argumento, el nombre del archivo a leer:
+Para empezar a trabajar se deben seguir los siguientes pasos:
+
+```bash
+# RECOMENDACION: Crear un ambiente de conda en donde instales todas las librerias necesarias
+conda create --name p_biopython
+conda activate p_biopython 
+# OBLIGATORIO: Descargar las librerias necesarias para el uso de los proyectos
+pip install pandas
+pip install pydeseq2
+pip install Biopython
+```
+
+Cada uno de los scripts acepta distintos argumentos.
+
+El script `Expresion_diferencial.py`, toma como argumento el path hacia el archivo que contiene los datos de expresión, el nombre de las columnas que contienen los datos de control y el nombre de las condiciones a probar:
 
 ```
-python programa.py -inputfile [archivo]
+python Expresion_diferencial.py -i [archivo] -cn [col_control1,col_controln] -st [col_state1,col_staten] 
 ```
 
-donde `[archivo]` es el nombre del archivo que contiene los números a sumar. El archivo debe contener un número por línea.
+donde: 
+- `[archivo]` es el nombre del archivo que contiene los valores de expresión. El archivo debe contener los valores de un gen por línea.
+- `[col_control1,col_controln]` es el nombre de las columnas control en formato de lista.
+- `[col_state1,col_staten]` es el nombre de las columnas con las condiciones que se van a comparar contra el control.
 
 ## Salida (TODO)
 
@@ -30,11 +47,11 @@ El script está diseñado para operar con los datos del análisis de expresión 
 
 ## Metadatos y documentación  
 
-Este README ofrece información de uso básico. Para obtener información más detallada sobre el diseño y la implementación del script, consulte [Enlace a la documentación], para obtener información mas detallada acerca sobre los datos utilizados puedes acceder al repositorio [Small-proteins-induced-under-low-magnesium-stress](https://github.com/yadavalli-lab/Small-proteins-induced-under-low-magnesium-stress).
+Este README ofrece información de uso básico de los scripts, tanto del modo de uso, así como del formato de salida. Para obtener información mas detallada acerca sobre los datos utilizados puedes acceder al repositorio [Small-proteins-induced-under-low-magnesium-stress](https://github.com/yadavalli-lab/Small-proteins-induced-under-low-magnesium-stress).
 
 ## Código fuente (TODO)
 
-El código fuente está disponible en este repositorio. Se acoge con satisfacción cualquier contribución o sugerencia a través de solicitudes pull request.
+El código fuente está disponible en este repositorio [Proyecto_Biopython_Sem3/src at main · JordiGaGa/Proyecto_Biopython_Sem3](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/tree/main/src). Se acoge con satisfacción cualquier contribución o sugerencia a través de solicitudes pull request.
 
 ## Términos de uso
 
@@ -42,7 +59,11 @@ Este script está disponible bajo la licencia [MIT License](https://github.com/J
 
 ## Como citar (TODO)
 
+<<<<<<< Updated upstream
 Si utiliza este script en su trabajo, por favor cite: [información de citación]. 
+=======
+Si utiliza este script en su trabajo, por favor cite: Jordi et al. (2024). *Proyecto_Biopython_Sem3* (Versión 1) https://github.com/JordiGaGa/Proyecto_Biopython_Sem3
+>>>>>>> Stashed changes
 
 ## Contáctenos (TODO)
 
