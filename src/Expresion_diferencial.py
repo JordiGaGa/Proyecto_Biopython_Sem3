@@ -1,5 +1,14 @@
 import pandas as pd
 from pydeseq2.dds import DeseqDataSet
+import argparse 
+import os
+
+def process_list(argline):
+    if os.path.isfile(argline):
+        with open(argline) as file:
+            return [ int(txid) for line in file.readlines() if (txid:=line.strip())]
+    else:
+        return [str(name) for name in argline.split(',') if name]
 
 def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     '''
@@ -45,5 +54,20 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     return dds.varm['LFC']
 
 if __name__ == "__main__":
-    samples = {'states':['low-mg1', 'low-mg2'], 'control':['ns1', 'ns2']}
-    print(analisis_diferencial(table="../data/GSE276379_RNASeq_kallisto.csv",samples=samples))
+    parser = argparse.ArgumentParser(description='Recibe una matrix de conteos y regresa un dataframe con el analisis de expresion')
+    
+    parser.add_argument('-i','--input', type=str, required=True,
+                        help='Ruta a la matriz de conteo')
+    parser.add_argument('-cn','--control',type=process_list, required=True,
+                        help='Lista con el nombre de las columnas que son el control en el dataframe')
+    parser.add_argument('-st','--states',type=process_list, required=True,
+                        help='Lista con el nombre de las columnas que son el estado alternativo en el dataframe')
+    parser.add_argument('-sv','--save', action='store_true',
+                        help='Salvar o no el dataframe final')
+    
+    args = parser.parse_args()
+
+    samples = {'states':args.states, 'control':args.control}
+    print((df:=analisis_diferencial(table=args.input,samples=samples)))
+    if args.save and not df.empty:
+        df.to_csv('analisis.txt')
