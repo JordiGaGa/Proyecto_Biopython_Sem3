@@ -1,9 +1,16 @@
+# ===========================================================================
+# =                            imports
+# ===========================================================================
 import pandas as pd
 from pydeseq2.dds import DeseqDataSet
 import logging
 import argparse 
 import sys
 import os
+
+# ===========================================================================
+# =                            functions
+# ===========================================================================
 
 def getlogger(*args,**kwargs):
 
@@ -50,7 +57,7 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
             raise
         count_matrix = count_matrix.loc[[sample for group in samples.values() for sample in (group if isinstance(group,list) else [group])]]
         logger.info('Parseando matriz de conteos')
-        # Reenombrar las filas en el orden deseado
+       # Reenombrar las filas en el orden deseado
         count_matrix = count_matrix.rename(index={sample : (group + sample[-1]) for group,cases in samples.items() for sample in (cases if isinstance(cases,list) else [cases])})
         count_matrix = count_matrix.round().astype(int)
     except Exception as e:
@@ -77,6 +84,10 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
         raise(f'Error al realizar el analisis diferenical: {e}')
     logger.info('Terminando analalisis diferencial')
     return dds.varm['LFC']
+
+# ===========================================================================
+# =                            Main
+# ===========================================================================
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Recibe una matrix de conteos y regresa un dataframe con el analisis de expresion')
