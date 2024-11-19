@@ -2,10 +2,11 @@
 # =                            imports
 # ===========================================================================
 
-from Expresion_diferencial import analisis_diferencial
 from Bio import Entrez
 import pandas as pd
+import argparse
 import time
+from Expresion_diferencial import analisis_diferencial, process_list
 
 # ===========================================================================
 # =                            functions
@@ -87,26 +88,50 @@ def gen_function_tag(id):
 # ===========================================================================
 
 # Variables dadas por el usuario
-Entrez.email = "aggonzal@lcg.unam.mx"
-samples = {'states':['low-mg1', 'low-mg2'], 'control':['ns1', 'ns2']}
-num_genes = 10 
-organismo = "escherichia coli"
-Entrez.email = "aggonzal@lcg.unam.mx"
+parser = argparse.ArgumentParser(description='Regresa un 2 dataframes de los genes sobreexpresados y subexpresados'
+                                'con su ID nombre del gen, descripcion de la proteina y locus tag')
+    
+parser.add_argument('-co', '--correo', type=str, required=True,
+                        help='Correo electronico para acceder a Entrez') # jordigg@lcg.unam.mx 
+parser.add_argument('-i','--input', type=str, required=True, 
+                        help='Ruta a la matriz de conteo') # '../data/GSE276379_RNASeq_kallisto.csv'
+parser.add_argument('-cn','--control',type=process_list, required=True,
+                        help='Lista con el nombre de las columnas que son el control en el dataframe') # n1,n2
+parser.add_argument('-st','--states',type=process_list, required=True,
+                        help='Lista con el nombre de las columnas que son el estado alternativo en el dataframe') # low-mg1,low-mg2
+parser.add_argument('-ng', '--numgenes', type=int, required=True, 
+                        help='Cantidad de genes sobreexpresados y subexpresados que deseas que se regresen') # 10
+parser.add_argument('-org', '--organismo', type=str, required=True,
+                        help='Nombre del organismo del cual se hizo el analisis de expresion diferencial') # 'escherichia coli'
+ 
+args = parser.parse_args()
+
+Entrez.email = args.correo 
+
+samples = {'states':args.states, 'control':args.control}
+
+#archivo = "../data/GSE276379_RNASeq_kallisto.csv"
+#samples = {'states':['low-mg1', 'low-mg2'], 'control':['ns1', 'ns2']}
+#Entrez.email = "aggonzal@lcg.unam.mx"
+#num_genes = 10 
+#organismo = "escherichia coli"
 
 
 # Llamada a función de análisis diferencial 
-dds = analisis_diferencial(table="../data/GSE276379_RNASeq_kallisto.csv",samples=samples)
+
+dds = analisis_diferencial(table=args.input,samples= samples)
 
 # Llamada a función que regresa las listas de genes sobreexpresados y subexpresados
-genes_mas,genes_menos = Lista_genes(dds, num_genes)
+genes_mas,genes_menos = Lista_genes(dds, args.numgenes)
 
 # Llamada a función que regresa los IDs de los genes a buscar
-gen_id_mas = {gen:Id_Gene(gen, organismo) for gen in genes_mas}
-gen_id_menos = {gen:Id_Gene(gen, organismo) for gen in genes_menos}
+gen_id_mas = {gen:Id_Gene(gen, args.organismo) for gen in genes_mas}
+gen_id_menos = {gen:Id_Gene(gen, args.organismo) for gen in genes_menos}
 
 # Llamada a función que crea los dataframes con ID, gen, descripción de la proteína y locus tag
 dataframe_mas = pd.DataFrame.from_dict([gen_function_tag(i) for i in gen_id_mas.values()])
 dataframe_menos = pd.DataFrame.from_dict([gen_function_tag(i) for i in gen_id_menos.values()])
 
+# Resultado impreso en pantalla
 print(dataframe_mas)
 print(dataframe_menos)
