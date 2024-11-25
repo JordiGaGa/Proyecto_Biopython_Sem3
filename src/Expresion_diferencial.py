@@ -3,7 +3,8 @@
 # ===========================================================================
 import pandas as pd
 from pydeseq2.dds import DeseqDataSet
-import logging
+from pydeseq2.ds import DeseqStats
+from logger import getlogger
 import argparse 
 import sys
 import os
@@ -11,27 +12,6 @@ import os
 # ===========================================================================
 # =                            functions
 # ===========================================================================
-
-def getlogger(*args,**kwargs):
-
-    logger = logging.getLogger('Analisis diferencial')
-    logger.setLevel(logging.INFO)
-
-    console_handler = logging.StreamHandler() 
-    console_handler.setLevel(logging.INFO) 
-    # Crear un formateador y añadirlo al manejador 
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
-    console_handler.setFormatter(formatter) 
-    # Añadir el manejador al logger 
-    logger.addHandler(console_handler)
-    return logger
-
-def process_list(argline):
-    if os.path.isfile(argline):
-        with open(argline) as file:
-            return [ int(txid) for line in file.readlines() if (txid:=line.strip())]
-    else:
-        return [str(name) for name in argline.split(',') if name]
 
 def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     '''
@@ -43,9 +23,15 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
         pd.Datafreme: Retorna un dataframe con los valores de expresion base y diferencial a "states"
     '''
     
-    logger = getlogger()
+    logger = getlogger('Analisis diferencial')
+    # Eliminamos el output de la libreria pydeseq2
     
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+
+
     sys.stderr = open(os.devnull, 'w')
+    sys.stdout = open(os.devnull, 'w')
 
     logger.info('Iniciando analisis diferencial')
     try:    
@@ -63,13 +49,14 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     except Exception as e:
         logger.critical(f'Error creando la matriz de conteos: {e}')
         raise
-    logger.info('Empezando analasis deferencial')
+    
+    logger.info('Empezando analisis deferencial')
+    
     try:
-        # Definir la metadata con "low-mg" como la condición de referencia
+        #Agregar comentario
         metadata = pd.DataFrame({
             'conditions' : [case[:-1] for case in list(count_matrix.index)] 
         }, index=list(count_matrix.index))
-        
         # Crear el objeto DeseqDataSet
         dds = DeseqDataSet(
             counts=count_matrix,
@@ -82,28 +69,23 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
 
     except Exception as e:
         raise(f'Error al realizar el analisis diferenical: {e}')
-    logger.info('Terminando analalisis diferencial')
-    return dds.varm['LFC']
+    logger.info('Empezando analisis estadistico')
+    
+    try:
+        ds = DeseqStats(dds,contrast=['conditions','states','control'])
+        ds.summary()
+    except Exception as e:
+        raise(f'Error al realizar el analisis estadistico: {e}')
+    #Regresamos los valores de expresion con un p-value ajustado menor a 0.05 
+    
+    sys.stdout = original_stdout
+    sys.stderr = original_stderr
+    
+    return ds.results_df.query('padj<=0.05')['log2FoldChange']
 
 # ===========================================================================
 # =                            Main
 # ===========================================================================
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Recibe una matrix de conteos y regresa un dataframe con el analisis de expresion')
-    
-    parser.add_argument('-i','--input', type=str, required=True,
-                        help='Ruta a la matriz de conteo')
-    parser.add_argument('-cn','--control',type=process_list, required=True,
-                        help='Lista con el nombre de las columnas que son el control en el dataframe')
-    parser.add_argument('-st','--states',type=process_list, required=True,
-                        help='Lista con el nombre de las columnas que son el estado alternativo en el dataframe')
-    parser.add_argument('-sv','--save', action='store_true',
-                        help='Salvar o no el dataframe final')
-    
-    args = parser.parse_args()
-
-    samples = {'states':args.states, 'control':args.control}
-    print((df:=analisis_diferencial(table=args.input,samples=samples)))
-    if args.save and not df.empty:
-        df.to_csv('analisis.txt')
+    pass
