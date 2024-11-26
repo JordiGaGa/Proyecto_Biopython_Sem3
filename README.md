@@ -7,21 +7,22 @@ Este es un proyecto colaborativo el cual contiene distintos scripts de Python pa
 Para empezar a trabajar se deben seguir los siguientes pasos:
 
 ```bash
-# RECOMENDACION: Crear un ambiente de conda en donde instales todas las librerias necesarias
-conda create --name p_biopython
-conda activate p_biopython 
-# OBLIGATORIO: Descargar las librerias necesarias para el uso de los proyectos
-pip install pandas
-pip install pydeseq2
-pip install Biopython
+# Crear un ambiente de conda en donde se instalen todas las librerias necesarias
+conda env create -f environment.yml
+
+# Para activar el ambiente...
+conda activate Proyecto_Bio  
+
+# Para desactivarlo
+conda deactivate
 ```
 
 Cada uno de los scripts acepta distintos argumentos.
 
-El script `Expresion_diferencial.py`, toma como argumento el path hacia el archivo que contiene los datos de expresión, el nombre de las columnas que contienen los datos de control y el nombre de las condiciones a probar:
+Para correr el script `Expresion_diferencial.py`, desde linea de comando, se toma como argumentos: el path hacia el archivo que contiene los datos de expresión, el nombre de las columnas que contienen los datos de control y el nombre de las condiciones a probar, tal y como se muestra a continuación:
 
-```
-python Expresion_diferencial.py -i [archivo] -cn [col_control1,col_controln] -st [col_state1,col_staten] 
+```bash
+python main.py -i [archivo] -cn [col_control1,col_controln] -st [col_state1,col_staten] 
 ```
 
 donde: 
@@ -29,10 +30,16 @@ donde:
 - `[col_control1,col_controln]` es el nombre de las columnas control en formato de lista.
 - `[col_state1,col_staten]` es el nombre de las columnas con las condiciones que se van a comparar contra el control.
 
+Para correr el el script `Expresion_diferencial.py`, como una función de Python, se toman como argumentos: el path hacia el archivo que contiene los datos de expresión, ademas de un diccionario que el nombre de las columnas que contienen los datos de control y las condiciones a probar. Ejemplo de uso:
+
+```python
+analisis_diferencial(table_csv:'./path_al_archivo_.csv', samples:{'control':[columna_control_1,columna_control_2], 'states': [conlumna_condicion_1, columna_condicion_2]})
+```
 ## Salida (TODO)
 
-El script imprimirá la suma de los números en la consola.
+El script `Expresion_diferencial.py` regresa un dataframe con los valores de expresión diferencial (solo aquellos que muestren un p-value ajustado menor o igual 0.001). <!--Revisar-->
 
+<!--
 ## Pruebas (TODO)
 
 El script incluye un conjunto de pruebas unitarias. Puede ejecutar estas pruebas con:
@@ -40,7 +47,7 @@ El script incluye un conjunto de pruebas unitarias. Puede ejecutar estas pruebas
 ```
 python -m unittest test_sumador.py
 ```
-
+-->
 ## Datos 
 
 El script está diseñado para operar con los datos del análisis de expresión extraídos de la base de dato GEO *[Series GSE276379](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE276379)* que contiene el perfil de expresion de E. coli en condiciones de estrés bajo una pequeña cantidad de magnesio.
