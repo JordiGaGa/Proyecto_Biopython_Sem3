@@ -2,7 +2,6 @@ tests/tests.ipynb
 tests/test.py
 tests/__pycache__/Expresion_diferencial.cpython-39.pyc
 tests/__pycache__/Expresion_diferencial.cpython-310.pyc
-env.yml
 src/full_data.csv
 src/__pycache__/Expresion_diferencial.cpython-39.pyc
 src/__pycache__/Expresion_diferencial.cpython-310.pyc
