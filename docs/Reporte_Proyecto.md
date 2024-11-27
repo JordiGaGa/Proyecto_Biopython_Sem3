@@ -5,6 +5,7 @@ Nombre:  Jordi García Garcés (<jordigg@lcg.unam.mx>)
 Nombre:   Jocelyn Trujillo Gutierrez  (<jocelynt@lcg.unam.mx>)  
 
 Fecha:  10/09/2024
+
 ## Introducción
 
 El magnesio es uno de los cationes mas abundantes dentro de  las células [referencia Romani AM]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves: unión al DNA y mantenimiento de su estabilidad (promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción), catálisis enzimática (cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA), interacciones proteína-proteína (facilita la interacción entre las subunidades de la RNA-pol, también está presente en la formación de macro-complejos que regulen el DNA), regulación post-transcripcional (splicing y formación de los residuos de pseudouridina en rRNA y tRNA) y respuesta al estrés celular (modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés). [referencia Xue Li ].

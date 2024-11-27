@@ -13,37 +13,41 @@ import os
 # =                            functions
 # ===========================================================================
 
-def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
+def analisis_diferencial(table_csv:str, samples:dict) -> pd.DataFrame:
     '''
-    Realiza un análisis diferencial en los datos proporcionados. 
+    Realiza un análisis diferencial en los datos proporcionados.
+
     Args: 
-        table (str): Ruta al archivo de la tabla de datos. 
-        samples (dict[str, list]): Un diccionario donde las claves son nombres de muestras ("control" e "states") y los valores son listas de datos (list).
+        table_csv (str): Ruta al archivo de la tabla de datos en formato csv. 
+        samples (dict[str, list]): Un diccionario donde las llaves son el tipo de muestras, ya sea 
+                                   que estas pertenescan a un control ("control") o que sean las distintas
+                                   condiciones ("states") y los valores son la lista de nombres de las muestras
+                                   de las respectivas muestras.
     Returns: 
         pd.Datafreme: Retorna un dataframe con los valores de expresion base y diferencial a "states"
     '''
     
     logger = getlogger('Analisis diferencial')
-    # Eliminamos el output de la libreria pydeseq2
-    
+
+    # Guardar referencia a los outputs
     original_stdout = sys.stdout
     original_stderr = sys.stderr
 
-
+    # Suprimir el output impreso a pantalla (por parte de las librerias)
     sys.stderr = open(os.devnull, 'w')
     sys.stdout = open(os.devnull, 'w')
 
     logger.info('Iniciando analisis diferencial')
     try:    
         logger.info('Leyendo matriz de conteos')
-        # Leer la matriz de conteo
-        count_matrix = pd.read_csv(table,index_col=0).T
+        # Leer matriz de conteo
+        count_matrix = pd.read_csv(table_csv,index_col=0).T
         if count_matrix.empty:
             logger.critical("EL dataframe cargado esta vacio")
             raise
         count_matrix = count_matrix.loc[[sample for group in samples.values() for sample in (group if isinstance(group,list) else [group])]]
         logger.info('Parseando matriz de conteos')
-       # Reenombrar las filas en el orden deseado
+       # Reenombrar filas en el orden deseado
         count_matrix = count_matrix.rename(index={sample : (group + sample[-1]) for group,cases in samples.items() for sample in (cases if isinstance(cases,list) else [cases])})
         count_matrix = count_matrix.round().astype(int)
     except Exception as e:
@@ -53,22 +57,22 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     logger.info('Empezando analisis deferencial')
     
     try:
-        #Agregar comentario
+        # Generar archivo de metadata para el proceso de analisis diferencial por pydefse2
         metadata = pd.DataFrame({
             'conditions' : [case[:-1] for case in list(count_matrix.index)] 
         }, index=list(count_matrix.index))
-        # Crear el objeto DeseqDataSet
+        # Crear objeto DeseqDataSet
         dds = DeseqDataSet(
             counts=count_matrix,
             metadata=metadata,
             design_factors="conditions"
         )
-
-        # Ejecutar el análisis DESeq2
+        # Ejecutar análisis DESeq2
         dds.deseq2()
-
     except Exception as e:
         raise(f'Error al realizar el analisis diferenical: {e}')
+    
+
     logger.info('Empezando analisis estadistico')
     
     try:
@@ -76,8 +80,8 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
         ds.summary()
     except Exception as e:
         raise(f'Error al realizar el analisis estadistico: {e}')
-    #Regresamos los valores de expresion con un p-value ajustado menor a 0.05 
     
+    # Activar nuevamente el output
     sys.stdout = original_stdout
     sys.stderr = original_stderr
     
