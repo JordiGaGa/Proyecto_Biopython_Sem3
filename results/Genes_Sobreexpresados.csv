@@ -1,0 +1,39 @@
+gene_id,gene_name,prot_desc,locus_tag
+9797237,mgtL,leader peptide MgtL,b4702
+75056197,ygdR,lipoprotein YgdR,LA347_RS00255
+948623,phnC,phosphonate/phosphate ABC transporter ATP binding subunit,b4106
+946326,phoQ,sensor histidine kinase PhoQ,b1129
+944945,ais,putative lipopolysaccharide core heptose(II)-phosphate phosphatase,b2252
+947375,arnB,UDP-4-amino-4-deoxy-L-arabinose aminotransferase,b2253
+38094949,ymgK,protein YmgK,b4738
+947962,ugpB,sn-glycerol 3-phosphate ABC transporter periplasmic binding protein,b3453
+948238,pstC,phosphate ABC transporter membrane subunit PstC,b3727
+945455,dacC,D-alanyl-D-alanine carboxypeptidase DacC,b0839
+5061510,ydgU,uncharacterized protein YdgU,b4601
+946351,mgrB,PhoQ kinase inhibitor,b1826
+38094947,ymcF,protein YmcF,b4723
+947026,pgpC,phosphatidylglycerophosphatase C,b2560
+946350,yebO,uncharacterized protein YebO,b1825
+63925655,yriB,protein YriB,b4792
+946199,rstA,DNA-binding transcriptional regulator RstA,b1608
+948629,eptA,phosphoethanolamine transferase EptA,b4114
+5061497,mgtS,small protein MgtS,b4599
+946483,msrQ,membrane-bound flavocytochrome MsrQ,b1972
+945103,asr,periplasmic chaperone Asr,b1597
+947559,ydhI,DUF1656 domain-containing protein YdhI,b1643
+945046,phoB,DNA-binding transcriptional dual regulator PhoB,b0399
+948624,phnD,phosphonate/phosphate ABC transporter periplasmic binding protein,b4105
+945729,iraM,anti-adaptor protein IraM,b1160
+946042,ydeT,fimbrial usher domain-containing protein YdeT,b1505
+948237,pstS,phosphate ABC transporter periplasmic binding protein,b3728
+945344,arnF,undecaprenyl-phosphate-alpha-L-Ara4N flippase - ArnF subunit,b2258
+945041,phoA,alkaline phosphatase,b0383
+945733,ycgX,DUF1398 domain-containing protein YcgX,b1161
+945275,arnC,undecaprenyl-phosphate 4-deoxy-4-formamido-L-arabinose transferase,b2254
+947683,arnA,fused UDP-4-amino-4-deoxy-L-arabinose formyltransferase/UDP-glucuronate dehydrogenase,b2255
+946854,yfeO,putative transport protein YfeO,b2389
+946075,dgcZ,diguanylate cyclase DgcZ,b1535
+945450,ybjG,undecaprenyl pyrophosphate phosphatase,b0841
+948778,mgtA,Mg(2(+)) importing P-type ATPase,b4242
+945868,pdeR,cyclic di-GMP phosphodiesterase PdeR,b1285
+946360,pagP,Lipid A palmitoyltransferase,b0622

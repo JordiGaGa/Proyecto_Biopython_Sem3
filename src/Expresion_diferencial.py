@@ -81,7 +81,7 @@ def analisis_diferencial(table:str, samples:dict) -> pd.DataFrame:
     sys.stdout = original_stdout
     sys.stderr = original_stderr
     
-    return ds.results_df.query('padj<=0.05')['log2FoldChange']
+    return ds.results_df.query('padj<=0.001')['log2FoldChange']
 
 # ===========================================================================
 # =                            Main
