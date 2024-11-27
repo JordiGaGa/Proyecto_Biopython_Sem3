@@ -35,6 +35,8 @@ if __name__ == "__main__":
     parser.add_argument('-org', '--organismo', type=str, required=True,
                             help='Nombre del organismo del cual se hizo el analisis de expresion diferencial') # 'escherichia coli'
 
+    parser.add_argument('-p','--adjusted_p_value',type=float, default=0.005,
+                        help='Valor del p value ajustado para filtrar los datos')
 
     args, _ = parser.parse_known_args()
 
@@ -46,7 +48,7 @@ if __name__ == "__main__":
     try:
         samples = {'states':args.states, 'control':args.control}
         
-        df = analisis_diferencial(table=args.input,samples=samples)
+        df = analisis_diferencial(table=args.input,samples=samples p_value=arg.adjusted_p_value)
         #Añadir Resto de Procesos
        
         if args.save_full_data and not df.empty:
