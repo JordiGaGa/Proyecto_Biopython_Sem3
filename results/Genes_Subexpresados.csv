@@ -1,0 +1,100 @@
+gene_id,gene_name,prot_desc,locus_tag
+945768,trpB,tryptophan synthase subunit beta,b1261
+947155,nrdE,ribonucleoside-diphosphate reductase 2 subunit alpha,b2675
+946246,fiu,iron catecholate outer membrane transporter Fiu,b0805
+946428,fliD,flagellar filament capping protein,b1924
+946423,fliN,flagellar motor switch protein FliN,b1946
+1450243,ybdZ,enterobactin biosynthesis protein YbdZ,b4511
+946733,glpB,anaerobic glycerol-3-phosphate dehydrogenase subunit B,b2242
+946456,fliH,flagellar biosynthesis protein FliH,b1940
+946400,cheW,chemotaxis protein CheW,b1887
+945646,flgL,flagellar hook-filament junction protein 2,b1083
+948064,dppC,dipeptide ABC transporter membrane subunit DppC,b3542
+946449,fliK,flagellar hook-length control protein,b1943
+945181,fes,ferric enterobactin esterase,b0585
+949012,ymdA,uncharacterized protein YmdA,b1044
+945623,csgC,curlin chaperone,b1043
+946204,trpA,tryptophan synthase subunit alpha,b1260
+949025,carA,carbamoyl-phosphate synthetase small subunit,b0032
+947724,gltB,glutamate synthase subunit GltB,b3212
+945284,entA,"2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase",b0596
+946433,fliT,flagellar biosynthesis protein FliT,b1926
+948065,dppD,dipeptide ABC transporter ATP binding subunit DppD,b3541
+945087,glnK,nitrogen regulatory protein PII-2,b0450
+944775,carB,carbamoyl-phosphate synthetase large subunit,b0033
+947158,nrdI,dimanganese-tyrosyl radical cofactor maintenance flavodoxin NrdI,b2674
+947534,flgI,flagellar P-ring protein,b1080
+945384,bioF,8-amino-7-oxononanoate synthase,b0776
+945639,flgF,flagellar basal-body rod protein FlgF,b1077
+946396,cheR,chemotaxis protein methyltransferase,b1884
+945215,entH,proofreading thioesterase in enterobactin biosynthesis,b0597
+946300,flgA,flagellar basal body P-ring formation protein FlgA,b1072
+946633,gatA,galactitol-specific PTS enzyme IIA component,b2094
+946446,fliE,flagellar protein FliE,b1937
+946457,fliI,flagellar export ATPase FliI,b1941
+946451,fliG,flagellar motor switch protein FliG,b1939
+945184,entF,apo-serine activating enzyme,b0586
+945109,trpD,anthranilate synthase subunit TrpD,b1263
+945636,flgE,flagellar hook protein FlgE,b1076
+946610,gatB,galactitol-specific PTS enzyme IIB component,b2093
+947723,gltD,glutamate synthase subunit GltD,b3213
+945511,entC,isochorismate synthase EntC,b0593
+946713,glpA,anaerobic glycerol-3-phosphate dehydrogenase subunit A,b2241
+947161,nrdH,glutaredoxin-like protein NrdH,b2673
+949101,fliC,flagellar filament structural protein,b1923
+948763,pyrI,"aspartate carbamoyltransferase, PyrI subunit",b4244
+946442,fliM,flagellar motor switch protein FliM,b1945
+947068,grcA,stress-induced alternate pyruvate formate-lyase subunit,b2579
+947456,flgJ,putative peptidoglycan hydrolase FlgJ,b1081
+946462,fliP,flagellar biosynthesis protein FliP,b1948
+947981,nikA,Ni(2(+)) ABC transporter periplasmic binding protein,b3476
+946636,gatY,"tagatose-1,6-bisphosphate aldolase 2",b2096
+947049,nadB,L-aspartate oxidase,b2574
+945678,flgB,flagellar basal-body rod protein FlgB,b1073
+948370,glnA,glutamine synthetase,b3870
+946394,cheB,protein-glutamate methylesterase/protein glutamine deamidase,b1883
+946399,tar,methyl-accepting chemotaxis protein Tar,b1886
+948323,metE,cobalamin-independent homocysteine transmethylase,b3829
+946392,cheZ,chemotaxis protein CheZ,b1881
+946735,glpC,anaerobic glycerol-3-phosphate dehydrogenase subunit C,b2243
+946390,flhA,flagellar biosynthesis protein FlhA,b1879
+948824,fliA,RNA polymerase sigma factor FliA,b1922
+946687,flgC,flagellar basal-body rod protein FlgC,b1074
+946391,flhB,flagellar biosynthesis protein FlhB,b1880
+948258,asnA,asparagine synthetase A,b3744
+948826,fecC,ferric citrate ABC transporter membrane subunit FecC,b4289
+948884,tsr,methyl-accepting chemotaxis protein Tsr,b4355
+949042,cirA,iron-catecholate outer membrane transporter CirA,b2155
+946443,fliL,flagellar protein FliL,b1944
+948062,dppA,dipeptide ABC transporter periplasmic binding protein,b3544
+947426,entE,"2,3-dihydroxybenzoate-AMP ligase",b0594
+946429,fliS,flagellar biosynthesis protein FliS,b1925
+947149,nrdF,ribonucleoside-diphosphate reductase 2 subunit beta,b2676
+946448,fliF,flagellar basal-body MS-ring and collar protein,b1938
+945846,trpE,anthranilate synthase subunit TrpE,b1264
+945647,flgG,flagellar basal-body rod protein FlgG,b1078
+945648,flgK,flagellar hook-filament junction protein 1,b1082
+945649,fhuE,ferric coprogen/ferric rhodotorulic acid outer membrane transporter,b1102
+945193,fepA,ferric enterobactin outer membrane transporter,b0584
+946386,yecR,lipoprotein YecR,b1904
+948056,dppF,dipeptide ABC transporter ATP binding subunit DppF,b3540
+948767,pyrB,aspartate carbamoyltransferase catalytic subunit,b4245
+946996,flgH,flagellar L-ring protein,b1079
+946833,fliZ,DNA-binding transcriptional regulator FliZ,b1921
+948063,dppB,dipeptide ABC transporter membrane subunit DppB,b3543
+947262,sdaB,L-serine deaminase II,b2797
+946178,entB,enterobactin synthase component B,b0595
+947264,sdaC,L-serine:H(+) symporter SdaC,b2796
+946838,fecB,ferric citrate ABC transporter periplasmic binding protein,b4290
+946393,cheY,chemotaxis protein CheY,b1882
+946454,fliJ,flagellar biosynthesis protein FliJ,b1942
+946463,fliQ,flagellar biosynthesis protein FliQ,b1949
+946458,fliO,flagellar biosynthesis protein FliO,b1947
+947868,nirB,nitrite reductase (NADH) large subunit,b3365
+947502,ybiX,PKHD-type hydroxylase YbiX,b0804
+945813,flgD,"flagellar biosynthesis, initiation of hook assembly",b1075
+946427,fecA,ferric citrate outer membrane transporter,b4291
+946397,tap,methyl-accepting chemotaxis protein Tap,b1885
+945370,bioB,biotin synthase,b0775
+948360,glnL,protein histidine kinase NtrB,b3869
+946816,fecD,ferric citrate ABC transporter membrane subunit FecD,b4288

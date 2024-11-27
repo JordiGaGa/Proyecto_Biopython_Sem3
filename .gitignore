@@ -8,3 +8,6 @@ src/__pycache__/Expresion_diferencial.cpython-310.pyc
 src/__pycache__/logger.cpython-310.pyc
 tests/Expresion_diferencial.py
 tests/Informacion_Genes.py
+tests/full_data.csv
+tests/logger.py
+tests/__pycache__/logger.cpython-39.pyc
