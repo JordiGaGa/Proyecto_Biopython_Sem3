@@ -3,7 +3,7 @@ import seaborn as sns
 import pandas as pd
 from Utils import nivel_exp_df
 
-def pie_expresion_plot(df: pd.DataFrame, output_dir: str = None):
+def pie_expresion_plot(df: pd.Series, save : bool=False, output_dir: str = '.'):
     """
     Genera un gráfico de pie con los cambios en los niveles de expresion mostrados en el
     dataframe ingresado. Si se introduce un directorio de salida, la imagen sera
@@ -36,14 +36,16 @@ def pie_expresion_plot(df: pd.DataFrame, output_dir: str = None):
               loc="center left",
               bbox_to_anchor=(1, 0, 0.5, 1))
 
+    fig.tight_layout()
+
     # Guardar la imagen si se proporciona una ruta
-    if output_dir:
-        plt.savefig(f'{output_dir}/pie_expresion_plot.png', transparent=True)
+    if save:
+        plt.savefig(f'{output_dir}/pie_expresion_plot.jpg', transparent=True, bbox_inches= 'tight')
         print(f'Imagen "pie_expresion_plot.png" guardada dentro del directorio {output_dir}')
 
     return fig
 
-def expresion_dist_plot(df: pd.DataFrame, box_plot: bool = True, output_dir: str = None):
+def expresion_dist_plot(df: pd.Series, graph: str = 'box', save : bool = False, output_dir: str = '.'):
   """
   Genera un gráfico de puntos con los cambios en los niveles de expresion mostrados en el
   dataframe ingresado. Si se introduce un directorio de salida, la imagen sera
@@ -68,17 +70,19 @@ def expresion_dist_plot(df: pd.DataFrame, box_plot: bool = True, output_dir: str
   ax.xaxis.grid(True, linestyle='--', linewidth=0.5)
 
   # Crear boxplot o violinplot
-  if box_plot:
+  if graph == 'box':
     sns.boxplot(data=exp_level, x='log2FoldChange', y='expresion_change', hue ='expresion_change', ax=ax)
-  else:
+  elif graph == 'vl':
     sns.violinplot(data=exp_level, x='log2FoldChange', y='expresion_change', hue ='expresion_change', ax=ax)
 
   ax.set(ylabel=None)  # Eliminar el label del eje Y
   ax.set_title('Valores de cambio con p-value significativo')
 
+  f.tight_layout()
+
   # Guardarlo si es necesario
-  if output_dir:
-        plt.savefig(f'{output_dir}/expresion_plot.png', transparent=True)
+  if save:
+        plt.savefig(f'{output_dir}/expresion_plot.jpg', transparent=True)
         print(f'Imagen "expresion_plot.png" guardada dentro del directorio {output_dir}')
 
   # Mostrar la imagen
