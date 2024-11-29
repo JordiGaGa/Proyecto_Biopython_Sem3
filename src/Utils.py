@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def nivel_exp_df(df: pd.DataFrame, conteo: bool = False):
+def nivel_exp_df(df: pd.Series, conteo: bool = False):
   """
   Filtra y agrega una nueva columna de acuerdo con los cambios en el nivel de
   expresion.
@@ -17,7 +17,8 @@ def nivel_exp_df(df: pd.DataFrame, conteo: bool = False):
                       ingresado.
   """
   # Sacar copia del df para no modificar el original
-  exp_level = df.copy()
+  exp_level = df.to_frame()
+
 
   # Clasificar los niveles de expresión y agregar una nueva columna 'expresion_change'
   exp_level['expresion_change'] = exp_level['log2FoldChange'].apply(
@@ -30,31 +31,30 @@ def nivel_exp_df(df: pd.DataFrame, conteo: bool = False):
   # Devolver el dataframe modificado
   return exp_level
 
-
-def outliers_dif_exp(df_exp: pd.DataFrame):
+def outliers_dif_exp(df_exp: pd.Series):
   """
   Encuentra los valores de los outliers de la distribucion de genes sobre y sub expresados
 
   Args:
-        df_exp (pd.DataFrame): El dataframe original que contiene la información de expresión de genes.
+        df_exp (pd.Series): La Serie original que contiene la información de expresión de genes.
 
     Returns:
         dict: Diccionario cuyas llaves son el nivel de expresion ('Subexpresado' o 'Sobreexpresado') y los
               valores corresponden a una lista que contenga cada uno de los outliers de cada distribucion
   """
-  df_sobreexpresados = df_exp[df_exp['log2FoldChange'] > 0]
-  df_subexpresados = df_exp[df_exp['log2FoldChange'] < 0]
+  df_sobreexpresados = df_exp[df_exp > 0]
+  df_subexpresados = df_exp[df_exp < 0]
 
   for data in [df_sobreexpresados,df_subexpresados]:
-    Q1 = np.percentile(data['log2FoldChange'], 25)
-    Q3 = np.percentile(data['log2FoldChange'], 75)
+    Q1 = np.percentile(data, 25)
+    Q3 = np.percentile(data, 75)
     IQR = Q3 - Q1
-    if data['log2FoldChange'].iloc[0] > 0:
+    if data.iloc[0] > 0:
       limite = Q3 + 1.5 * IQR
-      sobreexp_outliers = list(data[data['log2FoldChange'] > limite].index)
+      sobreexp_outliers = list(data[data > limite].index)
     else:
       limite = Q1 - 1.5 * IQR
-      subexp_outliers = list(data[data['log2FoldChange'] < limite].index)
+      subexp_outliers = list(data[data < limite].index)
 
 
   return {'Sobreexpresado':sobreexp_outliers,'Subexpresado':subexp_outliers }

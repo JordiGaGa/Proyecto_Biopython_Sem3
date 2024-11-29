@@ -5,8 +5,11 @@ import argparse
 import os
 import pandas as pd 
 from Expresion_diferencial import analisis_diferencial
+from Informacion_Genes import Id_Gene, gen_function_tag
 import Informacion_Genes as ig
 from logger import getlogger
+from Utils import outliers_dif_exp
+from Data_viz import pie_expresion_plot, expresion_dist_plot
 # ===========================================================================
 # =                            functions
 # ===========================================================================
@@ -28,61 +31,86 @@ if __name__ == "__main__":
                         help='Lista con el nombre de las columnas que son el control en el dataframe') # n1,n2
     parser.add_argument('-st','--states',type=process_list, required=True,
                         help='Lista con el nombre de las columnas que son el estado alternativo en el dataframe') # low-mg1,low-mg2
-    parser.add_argument('-sv_all','--save_full_data', action='store_true',
+    parser.add_argument('-sv','--save', action='store_true',
                         help='Salvar o no el dataframe final')
     parser.add_argument('-co', '--correo', type=str, required=True,
                         help='Correo electronico para acceder a Entrez') # jordigg@lcg.unam.mx 
     parser.add_argument('-org', '--organismo', type=str, required=True,
                             help='Nombre del organismo del cual se hizo el analisis de expresion diferencial') # 'escherichia coli'
-
-    parser.add_argument('-p','--adjusted_p_value',type=float, default=0.005,
+    parser.add_argument('-pv','--adjusted_p_value',type=float, default=0.005,
                         help='Valor del p value ajustado para filtrar los datos')
+    parser.add_argument('-pl','--plot', type=str,choices=['all','pie','dist','none'],default='all',
+                        help='Opciones de plots')
+    parser.add_argument('-d','--dir_output',default='.',
+                            help='Directorio donde guardar el archivo con todos los datos de expresion')
 
     args, _ = parser.parse_known_args()
 
-    if args.save_full_data:
-        parser.add_argument('-o_all','--output_full_data',default='./full_data.csv',
-                            help='Directorio donde guardar el archivo con todos los datos de expresion')
-        args = parser.parse_args()
-    df = 0
+    
+   
+    if args.plot == 'all' or args.plot == 'dist':
+        parser.add_argument('-t','--type_dist',choices=['box','vl'],default='box',
+                            help='Tipo de grafica de distribucion')
+    
+    args = parser.parse_args()
+    
+    logger = getlogger()
+    
     try:
+        logger.debug('Creando diccionario')
         samples = {'states':args.states, 'control':args.control}
         
-        df = analisis_diferencial(table=args.input,samples=samples p_value=arg.adjusted_p_value)
+        logger.info('Ejecutando script de analisis diferencial')
+        df = analisis_diferencial(table=args.input,samples=samples, p_value=args.adjusted_p_value)
         #Añadir Resto de Procesos
-       
-        if args.save_full_data and not df.empty:
-            df.to_csv(args.output_full_data)
         
     except Exception as e:
         raise(f'Error{e}')
-    
+    #Extraemos los outliaers 
+    logger.info('Extrañendo genes outlaiers')
+    genes_out = outliers_dif_exp(df)
 
     # Llamada a funcion Lista_genes que extrae los mas sobreexpresados y menos sobreexpresados 
-    logger = getlogger('Informacion de genes')
+    
     logger.info('Empezando creacion de lista de genes')
-    genes_mas,genes_menos = ig.Lista_genes(df)
+    #genes_mas,genes_menos = ig.Lista_genes(df)
    
     # Llamada a funcion Id_Gene que regresa los IDs de los genes a buscar
     
     logger.info('Empezando obtencion de IDs de genes')
-    gen_id_mas = {gen:ig.Id_Gene(gen, args.organismo, args.correo) for gen in genes_mas}
-    gen_id_menos = {gen:ig.Id_Gene(gen, args.organismo, args.correo) for gen in genes_menos}
+    gen_id_mas = {gen:Id_Gene(gen, args.organismo, args.correo) for gen in genes_out['Sobreexpresado']}
+    gen_id_menos = {gen:Id_Gene(gen, args.organismo, args.correo) for gen in genes_out['Subexpresado']}
 
     # Llamada a funcion gen_function_tag que crea los dataframes con ID, gen, descripcion de la proteína y locus tag
     
     logger.info('Empezando creacion de dataframes')
     #dataframe_mas = pd.DataFrame.from_dict([ig.gen_function_tag(i, args.correo) for i in gen_id_mas.values()])
-    dataframe_mas = pd.DataFrame.from_dict([res for res in (ig.gen_function_tag(i, args.correo) for i in gen_id_mas.values()) if res is not None])
+    dataframe_mas = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_mas.values()) if res is not None])
 
     #dataframe_menos = pd.DataFrame.from_dict([ig.gen_function_tag(i, args.correo) for i in gen_id_menos.values()])
-    dataframe_menos = pd.DataFrame.from_dict([res for res in (ig.gen_function_tag(i, args.correo) for i in gen_id_menos.values()) if res is not None])
+    dataframe_menos = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_menos.values()) if res is not None])
 
-
-    # Creacion de los archivos dataframe a csv
-    
     logger.info('DataFrames listos')
-    dataframe_mas.to_csv('../results/Genes_Sobreexpresados.csv', index=False)  
-    dataframe_menos.to_csv('../results/Genes_Subexpresados.csv', index=False) 
+    # Creacion de los archivos dataframe a csv
+    if args.save and not df.empty:
+        
+        df.to_csv(os.path.join(args.dir_output,'full_data.csv'))        
+        dataframe_mas.to_csv(os.path.join(args.dir_output,'Genes_Sobreexpresados.csv'), index=False)  
+        dataframe_menos.to_csv(os.path.join(args.dir_output,'Genes_Subexpresados.csv'), index=False) 
+
+    
+    logger.info('Comenzando plot')
+    
+    if args.plot != 'none':
+        if args.plot == 'all' or args.plot == 'pie':
+            pie_expresion_plot(df,save=args.save,output_dir=args.dir_output)
+        if args.plot == 'all' or args.plot == 'dist':
+            expresion_dist_plot(df,args.type_dist,save=args.save,output_dir=args.dir_output)
+    
+
+
+
+
+    
 
 
