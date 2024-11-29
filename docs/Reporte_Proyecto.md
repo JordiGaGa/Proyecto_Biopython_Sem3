@@ -178,24 +178,33 @@ Solución: Describir paso a paso la solución, incluyendo los comandos correspon
 
 ```
 
-
+Fig.1 pie_plot
 ### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
 
-Archivo(s) (si se están corriendo como funciones individuales ):     
-	>
+Archivo(s) (si se están corriendo como funciones individuales):     
+	> full_data.csv
 
 Algoritmo: 
 
-1.  Dado los resultados de ...
+1. Dado los resultados del analisis de expresion diferencial se separaran aquellos genes cuyo p-value haya sido significativo (0.005) en sobreexpresados y subexpresados.
+2. De cada distribucion de valores se obtendran los outliers.
+3. Se regresaran los outliers correspondientes para el siguente paso.
 
 Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
 
-
 ```bash
-
+import pandas as pd
+from Informacion_Genes import Id_Gene
+from Utils import outliers_dif_exp
+from Data_viz import expresion_dist_plot
+# Graficar la distribucion de la expresion de los genes diferencialmente expresados
+expresion_dist_plot(pd.read_csv(full_data.csv)),'box')
+# Separar y obtener los outliers de los genes mas sobre y sub expresados
+genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ```
 
-Figura 1 y 2.
+(Agregar figura)
+Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes 
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
