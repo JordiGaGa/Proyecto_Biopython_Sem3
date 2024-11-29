@@ -3,38 +3,12 @@
 # ===========================================================================
 
 from Bio import Entrez
-import pandas 
 import time
 
 
 # ===========================================================================
 # =                            functions
 # ===========================================================================
-def Lista_genes(dds):
-    """
-    Funcion para regresar 2 listas, una con los genes más sobreexpresados y otra
-    con los más subexpresados basado en la cantidad de genes que indique el usuario
-    
-    Args:
-        dds (pd.DataFrame): El dataframe que contiene los datos con una columna llamada 
-                           'conditions_states_vs_control' que representa los cambios en 
-
-    Returns:
-        genes_mas (list) : Lista con los genes más sobreexpresados
-        genes menos (list) : Lista con los genes más subexpresados
-
-    """
-    # Creamos los sets de los genes mas sobreexpresados y mas subexpresados 
-    top = dds[dds > 3.5]
-    gen_mas = set(top.index)
-    bottom =  dds[dds < -3.5]
-    gen_menos = set(bottom.index)
-
-    # Convertimos los sets a listas 
-    genes_mas = [*gen_mas]
-    genes_menos = [*gen_menos]
-
-    return genes_mas, genes_menos
 
 def Id_Gene(gen,org,co):
     """
@@ -44,6 +18,8 @@ def Id_Gene(gen,org,co):
         gen (string) : Value de la lista de genes que viene siendo el nombre del gen
 
         org (string) : Nombre del organismo a analizar
+
+        co (string)  : Correo del usuario para acceden a Entrez
     Returns:
         record["IdList"] : Regresa el ID del gen en caso de encontrar, y si no regresa None
 
@@ -63,6 +39,8 @@ def gen_function_tag(id,co):
     
     Args:
         id (string) : Value de una lista el cual es el ID de un dado gen
+
+        co (string)  : Correo del usuario para acceden a Entrez
     Returns:
         info(pd.Dataframe) : DataFrame con los datos mencionados
         None : En caso de error se regresa un None 

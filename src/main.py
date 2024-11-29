@@ -6,7 +6,6 @@ import os
 import pandas as pd 
 from Expresion_diferencial import analisis_diferencial
 from Informacion_Genes import Id_Gene, gen_function_tag
-import Informacion_Genes as ig
 from logger import getlogger
 from Utils import outliers_dif_exp
 from Data_viz import pie_expresion_plot, expresion_dist_plot
@@ -36,13 +35,13 @@ if __name__ == "__main__":
     parser.add_argument('-co', '--correo', type=str, required=True,
                         help='Correo electronico para acceder a Entrez') # jordigg@lcg.unam.mx 
     parser.add_argument('-org', '--organismo', type=str, required=True,
-                            help='Nombre del organismo del cual se hizo el analisis de expresion diferencial') # 'escherichia coli'
+                        help='Nombre del organismo del cual se hizo el analisis de expresion diferencial') # 'escherichia coli'
     parser.add_argument('-pv','--adjusted_p_value',type=float, default=0.005,
                         help='Valor del p value ajustado para filtrar los datos')
-    parser.add_argument('-pl','--plot', type=str,choices=['all','pie','dist','none'],default='all',
+    parser.add_argument('-pl','--plot', type=str,choices=['all','pie','dist','None'],default='all',
                         help='Opciones de plots')
     parser.add_argument('-d','--dir_output',default='.',
-                            help='Directorio donde guardar el archivo con todos los datos de expresion')
+                        help='Directorio donde guardar el archivo con todos los datos de expresion')
 
     args, _ = parser.parse_known_args()
 
@@ -69,11 +68,6 @@ if __name__ == "__main__":
     #Extraemos los outliaers 
     logger.info('Extrañendo genes outlaiers')
     genes_out = outliers_dif_exp(df)
-
-    # Llamada a funcion Lista_genes que extrae los mas sobreexpresados y menos sobreexpresados 
-    
-    logger.info('Empezando creacion de lista de genes')
-    #genes_mas,genes_menos = ig.Lista_genes(df)
    
     # Llamada a funcion Id_Gene que regresa los IDs de los genes a buscar
     
@@ -101,15 +95,11 @@ if __name__ == "__main__":
     
     logger.info('Comenzando plot')
     
-    if args.plot != 'none':
+    if args.plot:
         if args.plot == 'all' or args.plot == 'pie':
             pie_expresion_plot(df,save=args.save,output_dir=args.dir_output)
         if args.plot == 'all' or args.plot == 'dist':
             expresion_dist_plot(df,args.type_dist,save=args.save,output_dir=args.dir_output)
-    
-
-
-
 
     
 
