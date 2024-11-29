@@ -76,15 +76,48 @@ expresion_dist_plot(df: pd.Series, graph: 'box', save : True, output_dir: '.'):
 ```
 ## Salida
 
+El script main tiene varias opciones de corrida que pueden dar diferentes salidas dependiendo las necesiadades del usuario, a continuacion se explicaran algunas de ellas
+
+### Default
+ ```bash
+ python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo'
+ ```
+La salida de esta linea de comando, es visializar a pantallas las dos graficas default que tiene el programa 'pie' y 'box'
+### Guardar todo
+ ```bash
+ python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -sv -d 'dir/'
+ ```
+Incorporar el parametro 'sv' a la linea de comandos, indica al programa que se van a salvar todos los archivos generados en el programa, tantos archivos csv con datos de expresion diferencial y jpg con las graficas generadas. Por otro lado el parametro 'd' es la ruta al directorio donde guardar los archivos siendo predeterminadamente el directorio donde se encuentra el usuario
+
+### Opciones graficas
+Por defecto se imprimen y/o generan dos graficas, una grafica de pie con los porcentajes de los genes sobre y sub expresados recuperados; ademas de una grafica de distribucion ya sea boxplot o violin plot. Sin embargo, el codigo le da la libertad al usuario a decidir que graficas generar con el parametro 'pl'.  
+ ```bash
+ python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'pie'
+ ```
+La salida de esta linea es visualizar solo la grafica de pie
+ ```bash
+ python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'dist' -t 'box'
+ ``` ```bash
+ python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'dist' -t 'vl'
+ ```
+Para el caso de la grafica de distribucion, el usuario debe decidir cual grafica generar con el parametro 't' siendo 'box' por defecto generando un boxplot, pudiendo ser cambiado a violin indicandolo con 'vl'
+
+### Eleccion de p_value
+```bash
+python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -pv 0.05
+```
+El usuario puede escoger que valor de corte tomar para el p_value ajustado y filtrar los datos siendo por defecto 0.005
+
 ### Linea de comando
 
 
 ### Python
-La función `analisis_diferencial` del archivo `Expresion_diferencial.py` regresa un dataframe con los valores de expresión diferencial (solo aquellos que muestren un p-value ajustado menor o igual 0.001). 
-La función `id_Gene` del archivo `Informacion_Genes.py` regresa el id de la base de datos de gene del gen introducido.
-La función `gen_fuction_tag` del archivo `Informacion_Genes.py` regresa un diccionario que contiene como llaves: El id del gen, su nombre, la descripción de la proteína (en caso de tenerla) y el locus tag y los valores correspondientes al id del gen introducido.
-La función `pie_expresion_plot` del archivo `Data_viz.py` regresa un grafico de pie con el porcentaje de genes diferencialmente expresados que se sobreexpresan y subexpresan.
-La función `expresion_dist_plot` del archivo `Data_viz.py` regresa un box-plot o un violin-plot con la distribución de los genes diferencialmente expresados que se sobreexpresan y subexpresan.
+
+- La función `analisis_diferencial` del archivo `Expresion_diferencial.py` regresa un dataframe con los valores de expresión diferencial (solo aquellos que muestren un p-value ajustado menor o igual 0.001). 
+- La función `id_Gene` del archivo `Informacion_Genes.py` regresa el id de la base de datos de gene del gen introducido.
+- La función `gen_fuction_tag` del archivo `Informacion_Genes.py` regresa un diccionario que contiene como llaves: El id del gen, su nombre, la descripción de la proteína (en caso de tenerla) y el locus tag y los valores correspondientes al id del gen introducido.
+- La función `pie_expresion_plot` del archivo `Data_viz.py` regresa un grafico de pie con el porcentaje de genes diferencialmente expresados que se sobreexpresan y subexpresan.
+- La función `expresion_dist_plot` del archivo `Data_viz.py` regresa un box-plot o un violin-plot con la distribución de los genes diferencialmente expresados que se sobreexpresan y subexpresan.
 ## Datos 
 
 El script está diseñado para operar con los datos del análisis de expresión extraídos de la base de dato GEO *[Series GSE276379](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE276379)* que contiene el perfil de expresion de E. coli en condiciones de estrés bajo una pequeña cantidad de magnesio.

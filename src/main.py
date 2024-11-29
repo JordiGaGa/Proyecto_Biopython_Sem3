@@ -97,9 +97,9 @@ if __name__ == "__main__":
     
     if args.plot != 'None':
         if args.plot == 'all' or args.plot == 'pie':
-            pie_expresion_plot(df,save=args.save,output_dir=args.dir_output)
+            pie_expresion_plot(df,save=args.save,output_dir=args.dir_output).show()
         if args.plot == 'all' or args.plot == 'dist':
-            expresion_dist_plot(df,args.type_dist,save=args.save,output_dir=args.dir_output)
+            expresion_dist_plot(df,args.type_dist,save=args.save,output_dir=args.dir_output).show()
 
     
 
