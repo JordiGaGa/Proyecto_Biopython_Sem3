@@ -157,7 +157,7 @@ Formato:
 1. Buscar la descripción funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
 
 ####Flujo del proyecto (Se tiene que actualizar)
-![DiagramaFlujo](https://github.com/user-attachments/assets/8edaf6b9-1eb7-45e6-93ef-971a1278cda8)
+![DiagramaFlujo]('Diagrama_de_flujo.png')
 
 
 ## Resultados

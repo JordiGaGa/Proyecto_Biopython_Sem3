@@ -92,14 +92,15 @@ Incorporar el parametro 'sv' a la linea de comandos, indica al programa que se v
 ### Opciones graficas
 Por defecto se imprimen y/o generan dos graficas, una grafica de pie con los porcentajes de los genes sobre y sub expresados recuperados; ademas de una grafica de distribucion ya sea boxplot o violin plot. Sin embargo, el codigo le da la libertad al usuario a decidir que graficas generar con el parametro 'pl'.  
  ```bash
- python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'pie'
- ```
+ python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -pl 'pie'
+```
 La salida de esta linea es visualizar solo la grafica de pie
- ```bash
- python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'dist' -t 'box'
- ``` ```bash
- python main.py -i 'archivo' -cn [col_control1,col_controln] -st [col_state1,col_staten] -co 'correo' -org 'Organismo' -pl 'dist' -t 'vl'
- ```
+```bash
+ python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -pl 'dist' -t 'box'
+``` 
+```bash
+ python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -pl 'dist' -t 'vl'
+```
 Para el caso de la grafica de distribucion, el usuario debe decidir cual grafica generar con el parametro 't' siendo 'box' por defecto generando un boxplot, pudiendo ser cambiado a violin indicandolo con 'vl'
 
 ### Eleccion de p_value
@@ -110,6 +111,9 @@ El usuario puede escoger que valor de corte tomar para el p_value ajustado y fil
 
 ### Linea de comando
 
+```bash
+python main.py -i 'archivo' -cn col_control1,col_controln -st col_state1,col_staten -co 'correo' -org 'Organismo' -sv -pv 0.005 -pl 'all' -t 'box' -d ./
+```
 
 ### Python
 
