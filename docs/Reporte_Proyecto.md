@@ -156,7 +156,7 @@ Formato:
 > ¿A qué funciones biológicas están asociadas dichos genes? 
 1. Buscar la descripción funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
 
-####Flujo del proyecto (Se tiene que actualizar)
+#### Flujo del proyecto (Se tiene que actualizar)
 ![DiagramaFlujo](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Diagrama_de_flujo.png)
 
 
