@@ -178,7 +178,7 @@ Solución: Describir paso a paso la solución, incluyendo los comandos correspon
 
 ```
 
-Fig.1 pie_plot
+![Fig.1 pie_plot](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/pie_expresion_plot.jpg)
 ### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -204,7 +204,7 @@ genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ```
 
 (Agregar figura)
-Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes 
+![Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/expresion_plot.jpg) 
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
