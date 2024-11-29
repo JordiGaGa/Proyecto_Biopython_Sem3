@@ -95,7 +95,7 @@ if __name__ == "__main__":
     
     logger.info('Comenzando plot')
     
-    if args.plot:
+    if args.plot != 'None':
         if args.plot == 'all' or args.plot == 'pie':
             pie_expresion_plot(df,save=args.save,output_dir=args.dir_output)
         if args.plot == 'all' or args.plot == 'dist':
