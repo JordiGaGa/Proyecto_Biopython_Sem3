@@ -78,10 +78,8 @@ if __name__ == "__main__":
     # Llamada a funcion gen_function_tag que crea los dataframes con ID, gen, descripcion de la proteína y locus tag
     
     logger.info('Empezando creacion de dataframes')
-    #dataframe_mas = pd.DataFrame.from_dict([ig.gen_function_tag(i, args.correo) for i in gen_id_mas.values()])
     dataframe_mas = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_mas.values()) if res is not None])
 
-    #dataframe_menos = pd.DataFrame.from_dict([ig.gen_function_tag(i, args.correo) for i in gen_id_menos.values()])
     dataframe_menos = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_menos.values()) if res is not None])
 
     logger.info('DataFrames listos')

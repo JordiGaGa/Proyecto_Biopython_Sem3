@@ -169,12 +169,23 @@ Archivo(s):
 
 Algoritmo: 
 
-1.  Utilizar la libreria 
+1. Inspeccionamos nuestro archivo de entrada
+2. Definimos nuestros grupos control y a comparar en un diccionario
+3. Establecemos un valor de p-value ajustado para filtrar los datos
+4. Llamamos a la funcion *analisis_diferencial*
+5. Graficamos
 
-Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
+Solución: Conseguimos un objeto Series de pandas con todos los genes diferencialmente expresado 
 
 
 ```bash
+#Importamos la funcion
+from Expresion_diferencial import analisis_diferencial
+#Definimos el diccionario de casos 
+samples = {'states':[low-mg1,low-mg2], 'control':[ns1,ns2]}
+#Llamamos a la funcion 
+df = analisis_diferencial(table='/data/GSE276379_RNASeq_kallisto.csv',samples=samples, p_value=0.005)
+pie_expresion_plot(df,save=True,output_dir='results/').show()
 
 ```
 
