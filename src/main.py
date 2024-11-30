@@ -66,7 +66,7 @@ if __name__ == "__main__":
     except Exception as e:
         raise(f'Error{e}')
     #Extraemos los outliaers 
-    logger.info('Extrañendo genes outlaiers')
+    logger.info('Extrayendo genes outlaiers')
     genes_out = outliers_dif_exp(df)
    
     # Llamada a funcion Id_Gene que regresa los IDs de los genes a buscar
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     
     logger.info('Comenzando plot')
     
-    if args.plot:
+    if args.plot != 'None':
         if args.plot == 'all' or args.plot == 'pie':
             pie_expresion_plot(df,save=args.save,output_dir=args.dir_output)
         if args.plot == 'all' or args.plot == 'dist':

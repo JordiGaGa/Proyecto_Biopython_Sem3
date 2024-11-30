@@ -8,9 +8,9 @@ Fecha:  10/09/2024
 
 ## Introducción
 
-El magnesio es uno de los cationes mas abundantes dentro de  las células [referencia Romani AM]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves: unión al DNA y mantenimiento de su estabilidad (promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción), catálisis enzimática (cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA), interacciones proteína-proteína (facilita la interacción entre las subunidades de la RNA-pol, también está presente en la formación de macro-complejos que regulen el DNA), regulación post-transcripcional (splicing y formación de los residuos de pseudouridina en rRNA y tRNA) y respuesta al estrés celular (modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés). [referencia Xue Li ].
+El magnesio es uno de los cationes mas abundantes dentro de  las células [2]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves: unión al DNA y mantenimiento de su estabilidad (promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción), catálisis enzimática (cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA), interacciones proteína-proteína (facilita la interacción entre las subunidades de la RNA-pol, también está presente en la formación de macro-complejos que regulen el DNA), regulación post-transcripcional (splicing y formación de los residuos de pseudouridina en rRNA y tRNA) y respuesta al estrés celular (modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés). [3].
 
-Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , pero hay otros que están totalmente restringidos al uso de este catión [referencia Groisman], indicando 2 cosas: La primera es vías alternas para la realización de ciertos procesos, lo ayuda a la supervivencia en condiciones limitadas del ion y la otra es que la célula no puede vivir sin el ion, por ende limitar su presencia en el medio induciría el suficiente estrés para permitir cambios en la expresión genética y activar estas vías alternas.
+Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , pero hay otros que están totalmente restringidos al uso de este catión [1], indicando 2 cosas: La primera es vías alternas para la realización de ciertos procesos, lo ayuda a la supervivencia en condiciones limitadas del ion y la otra es que la célula no puede vivir sin el ion, por ende limitar su presencia en el medio induciría el suficiente estrés para permitir cambios en la expresión genética y activar estas vías alternas.
 
 ## Planteamiento del problema
 
@@ -151,27 +151,25 @@ Formato:
 > ¿Qué genes están notablemente sobreexpresados y subexpresados?
 1. Identificar aquellos genes con cambios muy notables en sus niveles de expresión.
  2. Clasificar de acuerdo a si están sobreexpresados o subexpresados.
+ 3. Graficar.
 
 > ¿A qué funciones biológicas están asociadas dichos genes? 
-1. Realizar la anotación funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
- 2. Graficación de los datos. 
+1. Buscar la descripción funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
 
-####Flujo del proyecto
+####Flujo del proyecto (Se tiene que actualizar)
 ![DiagramaFlujo](https://github.com/user-attachments/assets/8edaf6b9-1eb7-45e6-93ef-971a1278cda8)
 
 
 ## Resultados
 
-
-
-<!-- 
-### X. Pregunta 
+### 1. ¿Existe un cambio en la expresión de los genes en condiciones bajas de magnesio? 
 
 Archivo(s):     
+	>`GSE276379_RNASeq_kallisto.csv`
 
 Algoritmo: 
 
-1. 
+1.  Utilizar la libreria 
 
 Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
 
@@ -180,21 +178,57 @@ Solución: Describir paso a paso la solución, incluyendo los comandos correspon
 
 ```
 
+Fig.1 pie_plot
+### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
+
+Archivo(s) (si se están corriendo como funciones individuales):     
+	> full_data.csv
+
+Algoritmo: 
+
+1. Dado los resultados del analisis de expresion diferencial se separaran aquellos genes cuyo p-value haya sido significativo (0.005) en sobreexpresados y subexpresados.
+2. De cada distribucion de valores se obtendran los outliers.
+3. Se regresaran los outliers correspondientes para el siguente paso.
+
+Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
+
+```bash
+import pandas as pd
+from Informacion_Genes import Id_Gene
+from Utils import outliers_dif_exp
+from Data_viz import expresion_dist_plot
+# Graficar la distribucion de la expresion de los genes diferencialmente expresados
+expresion_dist_plot(pd.read_csv(full_data.csv)),'box')
+# Separar y obtener los outliers de los genes mas sobre y sub expresados
+genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
+```
+
+(Agregar figura)
+Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes 
+### 3. ¿A qué funciones biológicas están asociadas dichos genes?
+
+Archivo(s) (si se están corriendo como funciones individuales):     
+	>
+
+Algoritmo: 
+
+1.  Dado los resultados de ...
+
+Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
 
 
+```bash
+
+```
 
 ## Análisis y Conclusiones
 
- <!-- Describir todo lo que descubriste en este análisis -->
-
+De acuerdo con los resultados, **E. coli** adapta su mecanismo de regulación en respuesta a condiciones de baja disponibilidad de magnesio. Esta regulación diferencial muestra dos tendencias claras:
+- **Genes subexpresados:** Predominantemente asociados con el **flagelo**. Esto podría indicar una reducción en la motilidad, probablemente como estrategia para conservar recursos energéticos en condiciones de estrés.
+- **Genes sobreexpresados:** No presentan un patrón uniforme, lo que sugiere una activación de distintos mecanismos para adaptarse a la restricción de magnesio, como la regulación de transportadores, respuestas al estrés o ajuste del metabolismo.
 
 ## Referencias
-<!-- Registrar todas las referencias consultadas. Se sugiere formato APA. Ejemplo:
- 
- [1] Frederick R. Blattner et al., The Complete Genome Sequence of <i>Escherichia coli</i> K-12.Science277,1453-1462(1997).DOI:10.1126/science.277.5331.1453 -> EJEMPLO
- 
-  -->
-  
+
  [1] Groisman EA, Hollands K, Kriner MA, Lee EJ, Park SY, Pontes MH. Bacterial Mg2+ homeostasis, transport, and virulence. Annu Rev Genet. 2013;47:625-46. doi: 10.1146/annurev-genet-051313-051025. Epub 2013 Sep 20. PMID: 24079267; PMCID: PMC4059682.
  
  [2] Romani AM, Scarpa A. Regulation of cellular magnesium. Front Biosci. 2000 Aug 1;5:D720-34. doi: 10.2741/romani. PMID: 10922296.
