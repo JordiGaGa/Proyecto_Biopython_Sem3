@@ -253,6 +253,8 @@ if args.save and not df.empty:
     dataframe_mas.to_csv(os.path.join(args.dir_output,'Genes_Sobreexpresados.csv'), index=False)  
     dataframe_menos.to_csv(os.path.join(args.dir_output,'Genes_Subexpresados.csv'), index=False) 
 ```
+![Fig. 3 Dataframe con genes sobreexpresado](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_sobreexpresados.png)
+![Fig. 4 Dataframe con genes subexpresados](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_subexpresados.png)
 
 ## Análisis y Conclusiones
 
