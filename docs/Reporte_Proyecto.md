@@ -190,6 +190,8 @@ pie_expresion_plot(df,save=True,output_dir='results/').show()
 ```
 
 ![Fig.1 pie_plot](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/pie_expresion_plot.jpg)
+***Fig.1 pie_plot***
+
 ### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -215,6 +217,8 @@ genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ```
 
 ![Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/expresion_plot.jpg) 
+***Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes***
+
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -254,7 +258,10 @@ if args.save and not df.empty:
     dataframe_menos.to_csv(os.path.join(args.dir_output,'Genes_Subexpresados.csv'), index=False) 
 ```
 ![Fig. 3 Dataframe con genes sobreexpresado](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_sobreexpresados.png)
+***[Fig. 3 Dataframe con genes sobreexpresado***
+
 ![Fig. 4 Dataframe con genes subexpresados](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_subexpresados.png)
+***Fig. 4 Dataframe con genes subexpresados***
 
 ## Análisis y Conclusiones
 
