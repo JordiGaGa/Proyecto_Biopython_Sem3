@@ -45,7 +45,6 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 ```
 |-- data
 |   |-- GSE276379_RNASeq_kallisto.csv
-|   |-- GSE276379_RNASeq_kallisto_sin_length.tsv
 |   |-- SraRunTable.txt
 ```
 
@@ -61,27 +60,28 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 | Archivo                                  | Descripción                                                                           | Tipo        |
 | :--------------------------------------- | :------------------------------------------------------------------------------------ | :---------- |
 | GSE276379_RNASeq_kallisto.csv            | Archivo con los datos de expresión en distintas condiciones y la longitud de cada gen | Formato csv |
-| GSE276379_RNASeq_kallisto_sin_length.tsv | Archivo con los datos de expresión en distintas condiciones                           | Formato tsv |
 | SraRunTable.txt                          | Tabla de metadatos sobre cada una de las condiciones                                  | Formato csv |
 
 #### Formato de los archivos
 
 
-- `GSE276379_RNASeq_kallisto_sin_length.tsv` : formato tsv
+- `GSE276379_RNASeq_kallisto.csv` : formato csv
 
 ```
-	low-mg1	low-mg2	ns1	ns2
-thrL	39.8686	40.0939	56.2871	61.5181
-thrA	26.5438	21.487	341.707	298.131
-thrB	25.3756	19.9654	255.076	237.161
-thrC	25.6537	20.6849	310.112	285.386
-yaaX	17.8188	14.4786	32.6503	34.8904
-yaaA	29.9852	24.5718	60.3333	61.0447
+gene,length,low-mg1,low-mg2,ns1,ns2
+thrL,66,39.8686,40.0939,56.2871,61.5181
+thrA,2463,26.5438,21.487,341.707,298.131
+thrB,933,25.3756,19.9654,255.076,237.161
+thrC,1287,25.6537,20.6849,310.112,285.386
+yaaX,297,17.8188,14.4786,32.6503,34.8904
+yaaA,777,29.9852,24.5718,60.3333,61.0447
 ```
 
 Formato: 
 
 > a. La primera línea es información de las condiciones: 
+- gene: Nombre del gen
+- length: Longitud de la proteína a la que codifica 
 - low-mg1: E. coli en medio con bajo magnesio. Replica 1
 - low-mg2: E. coli en medio con bajo magnesio. Replica 2
 - ns1: Grupo control. Replica 1
@@ -201,7 +201,7 @@ Algoritmo:
 2. De cada distribucion de valores se obtendran los outliers.
 3. Se regresaran los outliers correspondientes para el siguente paso.
 
-Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
+Solución: Se rescatan los genes sobreexpresados y subexpresados 
 
 ```bash
 import pandas as pd
@@ -218,17 +218,40 @@ genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
-	>
+	>  Diccionario con nombre de gen como key y el ID de la base de datos "gene" como su value (esto se hace tanto para el grupo de
+	sobreexpresados como subexpresados)
+	Ejemplo : {'ybjG': '945450'} 
+
+	Para correr de manera iterativa se llamaría a la función de la siguiente manera y se transforma en un dataframe: 
+	```python
+	dataframe_genes = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id.values()) if res is not None])
+	```
 
 Algoritmo: 
 
-1.  Dado los resultados de ...
+1. Dado los resultados de la función ID_Gene, en la cual se obtuvieron los IDs de un conjunto de genes la base de datos "gene", se manda el 
+	diccionario con el nombre del gen como key y su ID como value (el cual para uso iterativo ya se explicó previamente cómo llamar a la función
+	o en su defecto se corre desde el main).
+2. De cada uno de los IDs dados a la función se agregará en un diccionario su ID, nombre del gen, descripción de la proteína (en caso de tener una) 
+	y su locus tag.
+3.  Se regresa un diccionario con los atributos mencionados de cada gen y se convierte en un dataframe en el main.
 
-Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
 
+Solución: Se crean archivos csv de los genes sobreexpresados y subexpresados
 
 ```bash
+from Bio import Entrez
+import time
+# Se llama a la función dentro de una comprehension list a la cual se le va pasando cada uno de los IDs de los diccionarios de genes 
+# sobreexpresados y subexpresados
+dataframe_mas = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_mas.values()) if res is not None])
+dataframe_menos = pd.DataFrame.from_dict([res for res in (gen_function_tag(i, args.correo) for i in gen_id_menos.values()) if res is not None])
 
+if args.save and not df.empty:
+        
+    df.to_csv(os.path.join(args.dir_output,'full_data.csv'))        
+    dataframe_mas.to_csv(os.path.join(args.dir_output,'Genes_Sobreexpresados.csv'), index=False)  
+    dataframe_menos.to_csv(os.path.join(args.dir_output,'Genes_Subexpresados.csv'), index=False) 
 ```
 
 ## Análisis y Conclusiones
