@@ -156,8 +156,8 @@ Formato:
 > ¿A qué funciones biológicas están asociadas dichos genes? 
 1. Buscar la descripción funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
 
-####Flujo del proyecto (Se tiene que actualizar)
-![DiagramaFlujo](https://github.com/user-attachments/assets/8edaf6b9-1eb7-45e6-93ef-971a1278cda8)
+#### Flujo del proyecto (Se tiene que actualizar)
+![DiagramaFlujo](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Diagrama_de_flujo.png)
 
 
 ## Resultados
@@ -169,16 +169,27 @@ Archivo(s):
 
 Algoritmo: 
 
-1.  Utilizar la libreria 
+1. Inspeccionamos nuestro archivo de entrada
+2. Definimos nuestros grupos control y a comparar en un diccionario
+3. Establecemos un valor de p-value ajustado para filtrar los datos
+4. Llamamos a la funcion *analisis_diferencial*
+5. Graficamos
 
-Solución: Describir paso a paso la solución, incluyendo los comandos correspondientes
+Solución: Conseguimos un objeto Series de pandas con todos los genes diferencialmente expresado 
 
 
 ```bash
+#Importamos la funcion
+from Expresion_diferencial import analisis_diferencial
+#Definimos el diccionario de casos 
+samples = {'states':[low-mg1,low-mg2], 'control':[ns1,ns2]}
+#Llamamos a la funcion 
+df = analisis_diferencial(table='/data/GSE276379_RNASeq_kallisto.csv',samples=samples, p_value=0.005)
+pie_expresion_plot(df,save=True,output_dir='results/').show()
 
 ```
 
-Fig.1 pie_plot
+![Fig.1 pie_plot](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/pie_expresion_plot.jpg)
 ### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -203,8 +214,7 @@ expresion_dist_plot(pd.read_csv(full_data.csv)),'box')
 genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ```
 
-(Agregar figura)
-Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes 
+![Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/expresion_plot.jpg) 
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
