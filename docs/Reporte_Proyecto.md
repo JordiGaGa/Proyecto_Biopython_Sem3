@@ -8,22 +8,20 @@ Fecha:  10/09/2024
 
 ## Introducción
 
-El magnesio es uno de los cationes mas abundantes dentro de  las células [2]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves: unión al DNA y mantenimiento de su estabilidad (promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción), catálisis enzimática (cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA), interacciones proteína-proteína (facilita la interacción entre las subunidades de la RNA-pol, también está presente en la formación de macro-complejos que regulen el DNA), regulación post-transcripcional (splicing y formación de los residuos de pseudouridina en rRNA y tRNA) y respuesta al estrés celular (modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés). [3].
+El magnesio es uno de los cationes más abundantes dentro de  las células [2]. Este ion tiene varios propósitos fundamentales como estabilizar complejos de macromoléculas, del mismo modo también puede actuar como cofactor en una variedad de complejos enzimáticos, así como influye en la regulación de la expresión genética. Enfocándonos en este último punto, el magnesio actúa en 5 puntos claves [3]: 
+- Unión al DNA y mantenimiento de su estabilidad: promoviendo la unión de factores de transcripción a las regiones promotoras, facilitando abrir su estructura en doble hélice para iniciar la transcripción.
+- Catálisis enzimática: cofactor en RNA-pol, varias ribozimas y adenyltransferasas las cuales ayudan a la maduración del tRNA.
+- Interacciones proteína-proteína: facilita la interacción entre las subunidades de la RNA-pol, también está presente en la formación de macro-complejos que regulen el DNA
+- Regulación post-transcripcional: splicing y formación de los residuos de pseudouridina en rRNA y tRNA.
+- Respuesta al estrés celular: modulando la actividad de ciertos factores de transcripción responsables de la respuesta a estrés, así como afectando la estabilidad de los mRNAs inducidos por estrés. 
 
-Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , pero hay otros que están totalmente restringidos al uso de este catión [1], indicando 2 cosas: La primera es vías alternas para la realización de ciertos procesos, lo ayuda a la supervivencia en condiciones limitadas del ion y la otra es que la célula no puede vivir sin el ion, por ende limitar su presencia en el medio induciría el suficiente estrés para permitir cambios en la expresión genética y activar estas vías alternas.
+Otros cationes pueden remplazar al Mg+2 en algunos de estos procesos , ciertas vías están totalmente restringidas al uso de este catión [1], indicando 2 cosas: la primera es vías alternas para la realización de ciertos procesos, lo ayuda a la supervivencia en condiciones limitadas del ion y la otra es que la célula no puede vivir sin el ion, por ende, limitar su presencia en el medio induciría el suficiente estrés para permitir cambios en la expresión genética y activar estas vías alternas.
 
 ## Planteamiento del problema
 
-Se busca analizar la diferencia en los niveles de expresión de E.coli en condiciones normales y bajo estrés (expuestas a una concentración pequeña de magnesio), esto con el fin de identificar aquellos genes que se sobreexpresen y subexpresen bajo dicha condición, para posteriormente poder hacer una anotación funcional e identificar si existe alguna relación entre las funciones de los genes más y menos expresados.
-
-## Planteamiento de Hipótesis
-
-Aquellos genes que se sobreexpresen podrían estar ligados a rutas metabólicas alternas que no dependan del magnesio, mientras que aquellos que se muestren subexpresados podrían estar relacionados a genes que regulen o disminuyan la entrada de magnesio a la célula.
+Se busca analizar la diferencia en los niveles de expresión de E.coli en condiciones normales y bajo estrés (expuestas a una concentración pequeña de magnesio), esto con el fin de identificar aquellos genes que se sobreexpresen y subexpresen bajo dicha condición, para posteriormente poder identificar si existe alguna relación entre las funciones de los genes más y menos expresados.
 
 ## Metodología
-
-<!-- [Identificar y describir los diferentes datos de entrada con los que se cuenta, así como de dónde fueron descargados, el formato de los mismos, y las columnas con las que cuenta. Especificar si se utilizará un servidor en particular para trabajar, o herramientas para el desarrollo de la solución del análsis. Formular las preguntas biológicas que se busca resolver con el análisis de los datos para determinar las tareas a realizar por cada una de ellas.]
--->
 
 ### A. Servidor y software
 
@@ -57,10 +55,10 @@ Los datos de entrada fueron descargados desde la base de datos de GEO en NCBI y 
 
 > Fecha de descarga: 09/2024
 
-| Archivo                                  | Descripción                                                                           | Tipo        |
-| :--------------------------------------- | :------------------------------------------------------------------------------------ | :---------- |
-| GSE276379_RNASeq_kallisto.csv            | Archivo con los datos de expresión en distintas condiciones y la longitud de cada gen | Formato csv |
-| SraRunTable.txt                          | Tabla de metadatos sobre cada una de las condiciones                                  | Formato csv |
+| Archivo                       | Descripción                                                                           | Tipo        |
+| :---------------------------- | :------------------------------------------------------------------------------------ | :---------- |
+| GSE276379_RNASeq_kallisto.csv | Archivo con los datos de expresión en distintas condiciones y la longitud de cada gen | Formato csv |
+| SraRunTable.txt               | Tabla de metadatos sobre cada una de las condiciones                                  | Formato csv |
 
 #### Formato de los archivos
 
@@ -82,10 +80,10 @@ Formato:
 > a. La primera línea es información de las condiciones: 
 - gene: Nombre del gen
 - length: Longitud de la proteína a la que codifica 
-- low-mg1: E. coli en medio con bajo magnesio. Replica 1
-- low-mg2: E. coli en medio con bajo magnesio. Replica 2
-- ns1: Grupo control. Replica 1
-- ns2: Grupo control. Replica 2
+- low-mg1: E. coli en medio con bajo magnesio. Réplica 1
+- low-mg2: E. coli en medio con bajo magnesio. Réplica 2
+- ns1: Grupo control. Réplica 1
+- ns2: Grupo control. Réplica 2
 
 > b. Después vienen varias líneas con cada gen y su nivel de expresión en cada condición.
 
@@ -103,40 +101,41 @@ SRR30561641,RNA-Seq,290,14043346823,PRJNA1156803,SAMN43501102,5466390979,Bacteri
 Formato: 
 
 > a. La primera línea son los datos relacionados a cada una de las pruebas realizadas. (Aquellos que aparezcan como missing, uncalculated o public en los metadatos no serán descritos)
-- Run: Identificador asociado a la corrida de secuenciación en el repositorio de datos de NCBI.
-- Assay Type: Tipo de ensayo con el que obtuvieron los datos.
-- AvgSpotLen: Longitud promedio de las lecturas 
-- Bases: Número de Bases
-- BIoProject: Identificador del proyecto biológico relacionado
-- BioSample: Identificador de la muestra biológica 
-- Bytes: Cantidad de datos cuantificados en bytes.
-- cell type: Tipo de célula analizada
-- Center Name: Nombre del laboratorio o centro que realizó el estudio
+
+- Run: identificador asociado a la corrida de secuenciación en el repositorio de datos de NCBI.
+- Assay Type: tipo de ensayo con el que obtuvieron los datos.
+- AvgSpotLen: longitud promedio de las lecturas 
+- Bases: número de bases
+- BIoProject: identificador del proyecto biológico relacionado
+- BioSample: identificador de la muestra biológica 
+- Bytes: cantidad de datos cuantificados en bytes.
+- cell type: tipo de célula analizada
+- Center Name: nombre del laboratorio o centro que realizó el estudio
 - Collection_Date: 
 - Consent:
-- DATASTORE filetype: Formato o tipo de archivo 
-- DATASTORE provider: Plataforma para almacenar los datos
-- DATASTORE region: Ubicación del centro de datos de los datos experimentales.
-- Experiment: Identificador del experimento.
-- genotype: Características del genotipo (wild type o modificado)
+- DATASTORE filetype: formato o tipo de archivo 
+- DATASTORE provider: plataforma para almacenar los datos
+- DATASTORE region: ubicación del centro de datos de los datos experimentales.
+- Experiment: identificador del experimento.
+- genotype: características del genotipo (wild type o modificado)
 - geo_loc_name_country:
 - geo_loc_name_country_continent:
 - geo_loc_name: 
-- Instrument: Modelo y nombre del secuenciador.
-- Library Name: Nombra de la biblioteca de secuencación.
-- LibraryLayout: Lecturas pareadas o solas.
-- LibrarySelection: Selección de la biblioteca de datos en base a con lo que fue generada.
-- LibrarySource: Biblioteca de donde se extrajeron los datos.
-- Organism: Organismo o especie usada.
-- Platform: Plataforma usada para el análisis
-- ReleaseDate: Hora y fecha de liberación de los datos.
-- create_date: Hora y fecha de registro en la base de datos.
-- version: Número de versión
-- Sample Name: Nombre de la muestra usada 
-- source_name: Tipo de célula 
-- SRA Study: EStudio registrado en Sequence Read Archive 
-- strain: Cepa utilizada 
-- treatment: Condición experimental bajo la que estuvo la muestra. 
+- Instrument: modelo y nombre del secuenciador.
+- Library Name: nombra de la biblioteca de secuencación.
+- LibraryLayout: lecturas pareadas o solas.
+- LibrarySelection: selección de la biblioteca de datos en base a con lo que fue generada.
+- LibrarySource: biblioteca de donde se extrajeron los datos.
+- Organism: organismo o especie usada.
+- Platform: plataforma usada para el análisis
+- ReleaseDate: hora y fecha de liberación de los datos.
+- create_date: hora y fecha de registro en la base de datos.
+- version: número de versión
+- Sample Name: nombre de la muestra usada 
+- source_name: tipo de célula 
+- SRA Study: estudio registrado en Sequence Read Archive 
+- strain: cepa utilizada 
+- treatment: condición experimental bajo la que estuvo la muestra. 
 
 > b. Después cada una de las filas está relacionada a las diferentes pruebas que se realizaron con sus características e información.
 
@@ -156,9 +155,10 @@ Formato:
 > ¿A qué funciones biológicas están asociadas dichos genes? 
 1. Buscar la descripción funcional de aquellos genes diferencialmente expresados con el módulo de Entrez. 
 
-#### Flujo del proyecto (Se tiene que actualizar)
+#### Flujo del proyecto
 ![DiagramaFlujo](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Diagrama_de_flujo.png)
 
+***Fig 1. Diagrama de Flujo***
 
 ## Resultados
 
@@ -189,7 +189,10 @@ pie_expresion_plot(df,save=True,output_dir='results/').show()
 
 ```
 
-![Fig.1 pie_plot](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/pie_expresion_plot.jpg)
+![Fig. 2 pie_plot](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/pie_expresion_plot.jpg)
+
+***Fig. 2 pie_plot***
+
 ### 2. ¿Qué genes están notablemente sobreexpresados y subexpresados? 
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -214,7 +217,10 @@ expresion_dist_plot(pd.read_csv(full_data.csv)),'box')
 genes_out = outliers_dif_exp(pd.read_csv(full_data.csv))
 ```
 
-![Fig. 2 Box-plot de la distribución de los niveles de expresión de los genes](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/expresion_plot.jpg) 
+![Fig. 3 Box-plot de la distribución de los niveles de expresión de los genes](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/results/expresion_plot.jpg) 
+
+***Fig. 3 Box-plot de la distribución de los niveles de expresión de los genes***
+
 ### 3. ¿A qué funciones biológicas están asociadas dichos genes?
 
 Archivo(s) (si se están corriendo como funciones individuales):     
@@ -253,6 +259,14 @@ if args.save and not df.empty:
     dataframe_mas.to_csv(os.path.join(args.dir_output,'Genes_Sobreexpresados.csv'), index=False)  
     dataframe_menos.to_csv(os.path.join(args.dir_output,'Genes_Subexpresados.csv'), index=False) 
 ```
+
+![Fig. 4 Dataframe con genes sobreexpresado](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_sobreexpresados.png)
+
+***Fig. 4 Dataframe con genes sobreexpresado***
+
+![Fig. 5 Dataframe con genes subexpresados](https://github.com/JordiGaGa/Proyecto_Biopython_Sem3/blob/main/docs/Genes_subexpresados.png)
+
+***Fig. 5 Dataframe con genes subexpresados***
 
 ## Análisis y Conclusiones
 
